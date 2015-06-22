@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'session/:id' => 'session#show', as: :show_session
+  post 'session/:id/join' => 'session#join', as: :join_session
+  post 'session/create' => 'session#create', as: :create_session
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -52,5 +55,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  root 'main#index'
+  root 'session#index'
 end
