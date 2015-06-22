@@ -16,10 +16,11 @@ class SessionController < ApplicationController
 		end
 		if params[:name]
 			s = Session.find(params[:id])
-			if s.users.all.map(&:name).include? params[:name]
+			user = User.where(:name => params[:name], :session_id => params[:id]).first
+			if user
 				# do some logic when user is found
 			else
-				u = User.create(:name => params[:name], :session_id => params[:id])
+				user = User.create(:name => params[:name], :session_id => params[:id])
 			end
 			render 'show'
 		else
