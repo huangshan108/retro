@@ -3,4 +3,7 @@
 <button id="join">Join</button>
 
 <label>Create a session</label>
-<%= link_to 'Create', create_session_path, method: :post %>
+<%= form_tag(:create_session) do %>
+	<label>Create a session</label>
+	<%= submit_tag 'Create' %>
+<% end %>
