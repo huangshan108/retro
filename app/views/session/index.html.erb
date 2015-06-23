@@ -1,8 +1,9 @@
-<label>Join a session</label>
-<input type="text" name="join">
-<button id="join">Join</button>
+<%= form_tag(:show_session_params_id) do %>
+	<label>Please enter session id:</label>
+	<%= text_field_tag 'id' %>
+	<%= submit_tag 'Join' %>
+<% end %>
 
-<label>Create a session</label>
 <%= form_tag(:create_session) do %>
 	<label>Create a session</label>
 	<%= submit_tag 'Create' %>

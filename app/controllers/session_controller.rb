@@ -24,11 +24,14 @@ class SessionController < ApplicationController
 			end
 			render 'show'
 		else
-			render 'join'
+			redirect_to :action => :join, :id => params[:id]
 		end
 	end
 
 	def join
-		redirect_to show_session_path(:id => params[:id], :name => params[:name])
+		if params[:name]
+			redirect_to show_session_path(:id => params[:id], :name => params[:name])
+			return
+		end
 	end
 end
