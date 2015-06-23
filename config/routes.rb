@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'session/:id/join' => 'session#join'
   post 'session/:id/join' => 'session#join', as: :join_session
   post 'session/create' => 'session#create', as: :create_session
+  post 'issues/create' => 'issues#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

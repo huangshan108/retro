@@ -1,0 +1,9 @@
+<div class="create-issue">
+	<label>Create a new issue:</label>
+	<input type="text" id="new-issue" data-session-id='<%= @s.id %>' data-user-id='<%= @user.id %>'>
+	<button class="create-new-issue">Create</button>
+</div>
+
+<div class="issue-list">
+	<%= render 'issue_list' %>
+</div>
