@@ -1,6 +1,13 @@
 <label>Issue List</label>
 <ul>
   <% @issues.each do |issue| %>
-    <li><%= issue.detail %></li>
+    <li>
+    	<%= issue.detail %>
+    	<% if is_vote %>
+	    	<div class="vote">
+	    		<input type="number" data-issue-id="<%= issue.id %>" value="0" min="0" max="5">
+	    	</div>
+	    <% end %>
+    </li>
   <% end %>
 </ul>
