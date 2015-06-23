@@ -4,18 +4,18 @@ class SessionController < ApplicationController
 	end
 
 	def create
-		new_session = Session.create
+		new_session = Session.create(:review_mode => false)
 		redirect_to show_session_path(new_session)
 	end
 
 	def show
-		if Session.find_by_id(params[:id]) == nil
+		@s = Session.find_by_id(params[:id])
+		if @s == nil
 			flash[:error] = "Session not found"
 			redirect_to root_path
 			return
 		end
 		if params[:name]
-			@s = Session.find(params[:id])
 			@user = User.where(:name => params[:name], :session_id => params[:id]).first
 			if @user
 				# do some logic when user is found
@@ -23,9 +23,15 @@ class SessionController < ApplicationController
 				@user = User.create(:name => params[:name], :session_id => params[:id])
 			end
 			@issues = @s.issues
+			if @s.review_mode
+				render 'review'
+				return
+			end
 			render 'show'
+			return
 		else
 			redirect_to :action => :join, :id => params[:id]
+			return
 		end
 	end
 
