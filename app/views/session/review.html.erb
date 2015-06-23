@@ -1,5 +1,12 @@
 <%= render 'issue_list' %>
 
-<div class="current-issue">
-	
+<div class="current-issue-container">
+  <label>Current Issue</label>
+  <div class="current-issue">
+    <% if @current_issue %>
+      <%= @current_issue.detail %>
+    <% else %>
+      No More Issues!
+    <% end %>
+  </div>
 </div>

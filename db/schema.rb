@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623073540) do
+ActiveRecord::Schema.define(version: 20150623075900) do
 
   create_table "issues", force: :cascade do |t|
     t.text     "detail"
     t.integer  "user_id"
     t.integer  "session_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "is_current", default: false
   end
 
   create_table "notes", force: :cascade do |t|
@@ -31,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150623073540) do
   create_table "sessions", force: :cascade do |t|
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.boolean  "review_mode", default: false
+    t.string   "mode",       default: "edit"
   end
 
   create_table "users", force: :cascade do |t|
