@@ -29,7 +29,10 @@ class SessionController < ApplicationController
         return
       when "vote"
         render 'vote'
+        return
       when "review"
+        @issues = @issues.order(vote: :desc)
+        @issues.first.update(:is_current => true)
         @current_issue = @issues.where(:is_current => true).first
         render 'review'
         return        
