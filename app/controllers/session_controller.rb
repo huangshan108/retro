@@ -35,7 +35,11 @@ class SessionController < ApplicationController
         @issues.first.update(:is_current => true)
         @current_issue = @issues.where(:is_current => true).first
         render 'review'
-        return        
+        return
+      when "report"
+        @issues = @issues.order(vote: :desc)
+        render 'report'
+        return
       end
     else
       redirect_to :action => :join, :id => params[:id]
@@ -52,5 +56,26 @@ class SessionController < ApplicationController
 
   def review
     
+  end
+
+  def edit_stage
+    change_stage('edit')
+  end
+
+  def vote_stage
+    change_stage('vote')
+  end
+
+  def review_stage
+    change_stage('review')
+  end
+
+  def report_stage
+    change_stage('report')
+  end
+
+  def change_stage(stage)
+    Session.find(params[:session_id]).update(:mode => stage)
+    redirect_to show_session_path(:id => params[:session_id], :name => params[:name])
   end
 end

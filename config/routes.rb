@@ -5,7 +5,13 @@ Rails.application.routes.draw do
   post 'session/:id/join' => 'session#join', as: :join_session
   post 'session/create' => 'session#create', as: :create_session
 
+  post 'session/edit_stage' => 'session#edit_stage', as: :edit_stage
+  post 'session/vote_stage' => 'session#vote_stage', as: :vote_stage
+  post 'session/review_stage' => 'session#review_stage', as: :review_stage
+  post 'session/report_stage' => 'session#report_stage', as: :report_stage
+
   post 'issues/create' => 'issues#create'
+
   post 'issues/vote' => 'issues#vote'
   post 'issues/new-note' => 'notes#create', as: :create_new_note
   # The priority is based upon order of creation: first created -> highest priority.
