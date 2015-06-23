@@ -49,3 +49,4 @@ group :production do
 end
 
 gem 'newrelic_rpm'
+gem "font-awesome-rails"

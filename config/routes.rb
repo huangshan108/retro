@@ -11,9 +11,10 @@ Rails.application.routes.draw do
   post 'session/report_stage' => 'session#report_stage', as: :report_stage
 
   post 'issues/create' => 'issues#create'
-
   post 'issues/vote' => 'issues#vote'
   post 'issues/new-note' => 'notes#create', as: :create_new_note
+  post 'issues/thumb-up' => 'issues#thumb_up'
+  post 'issues/thumb-down' => 'issues#thumb_down'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

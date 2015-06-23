@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623091219) do
+ActiveRecord::Schema.define(version: 20150623230535) do
 
   create_table "issues", force: :cascade do |t|
     t.text     "detail"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20150623091219) do
     t.datetime "updated_at",                 null: false
     t.boolean  "is_current", default: false
     t.integer  "vote",       default: 0
+    t.integer  "thumb_up",   default: 0
+    t.integer  "thumb_down", default: 0
   end
 
   create_table "notes", force: :cascade do |t|

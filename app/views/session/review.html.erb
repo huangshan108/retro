@@ -19,6 +19,14 @@
   <div class="current-issue">
     <% if @current_issue %>
       <%= @current_issue.detail %>
+      <div class="thumb">
+        <div class="thumb-wrapper up" data-issue-id="<%= @current_issue.id %>">
+          <i class="fa fa-thumbs-o-up"></i>
+        </div>
+        <div class="thumb-wrapper down" data-issue-id="<%= @current_issue.id %>">
+          <i class="fa fa-thumbs-o-down"></i>
+        </div>
+      </div>
       <%= render 'add_note', :current_issue => @current_issue %>
     <% else %>
       No More Issues!
