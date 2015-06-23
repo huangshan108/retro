@@ -21,7 +21,7 @@ class IssuesController < ApplicationController
     end
     respond_to do |format|
       format.html {}
-      format.json { render :json => {:data => "succeed!" }}
+      format.json { render :json => {:data => "succeed!" } }
     end
   end
 end
