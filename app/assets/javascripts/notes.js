@@ -1,5 +1,4 @@
 $(function() {
-	console.log("nima");
 	$('#submit-note').click(function() {
 		note = $('.new-note input').val();
 		$.ajax({
