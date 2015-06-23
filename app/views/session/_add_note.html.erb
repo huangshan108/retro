@@ -1,7 +1,4 @@
-<div class="add-note">+</div>
 <div class="new-note">
-	<%= form_tag url_for(create_new_note_path(:issue_id => current_issue.id)), :remote => true do %>
-		<%= text_field_tag 'note' %>
-		<%= submit_tag 'Create' %>
-	<% end %>
+	<input type="text" name="note" data-issue-id="<%= current_issue.id %>">
+	<button id="submit-note">Submit Note</button>
 </div>
