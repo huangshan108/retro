@@ -1,3 +1,11 @@
+<div class="existing-notes">
+	<label>Notes:</label>
+	<ul>
+		<% current_issue.notes.each do |note| %>
+			<li><%= note.detail %></li>
+		<% end %>
+	</ul>
+</div>
 <div class="new-note">
 	<input type="text" name="note" data-issue-id="<%= current_issue.id %>">
 	<button id="submit-note">Submit Note</button>
