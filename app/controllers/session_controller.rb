@@ -32,7 +32,9 @@ class SessionController < ApplicationController
         return
       when "review"
         @issues = @issues.order(vote: :desc)
-        @issues.first.update(:is_current => true)
+        if @issues.where(:is_current => true).empty?
+          @issues.first.update(:is_current => true)          
+        end
         @current_issue = @issues.where(:is_current => true).first
         render 'review'
         return

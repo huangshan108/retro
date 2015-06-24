@@ -13,6 +13,8 @@
     </div>
     <%= render 'session/add_note.html.erb', :current_issue => @current_issue %>
   <% else %>
-    No More Issues!
+    <div class="no-more-issues">
+      No More Issues!
+    </div>
   <% end %>
 </div>

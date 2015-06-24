@@ -45,6 +45,10 @@ class IssuesController < ApplicationController
 
   def next_issue
     @current_issue = Issue.find_by_id(params[:next_issue_id])
+    if @current_issue
+      @current_issue.update(:is_current => true)      
+      Issue.find_by_id(params[:cur_issue_id]).update(:is_current => false)
+    end
     render 'session/_current_issue.html.erb', :layout => false
   end
 end
