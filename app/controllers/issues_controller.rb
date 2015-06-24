@@ -42,4 +42,9 @@ class IssuesController < ApplicationController
       format.json { render :json => {:data => "succeed!" } }
     end
   end
+
+  def next_issue
+    @current_issue = Issue.find_by_id(params[:next_issue_id])
+    render 'session/_current_issue.html.erb', :layout => false
+  end
 end

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'issues/new-note' => 'notes#create', as: :create_new_note
   post 'issues/thumb-up' => 'issues#thumb_up'
   post 'issues/thumb-down' => 'issues#thumb_down'
+  get 'issues/next-issue' => 'issues#next_issue'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

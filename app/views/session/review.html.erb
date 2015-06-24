@@ -1,13 +1,23 @@
 <div class="stage">
   <%= link_to 'Show Me Report', report_stage_path(:session_id => @s.id, :name => @user.name), method: :post %>
 </div>
+<div class="count-down">
+  You have <span id="sec-left"></span> seconds left.
+</div>
+<div class="next-issue-wrapper">
+  <button id="next-issue">Next Issue</button>
+</div>
 <table>
   <tr>
     <th>Issue</th>
     <th>Votes</th>
   </tr>
   <% @issues.each do |issue| %>
-  <tr>
+  <% if issue.is_current %>
+  <tr class="current" data-session-id="<%= @s.id %>" data-issue-id="<%= issue.id %>">
+  <% else %>
+  <tr data-session-id="<%= @s.id %>" data-issue-id="<%= issue.id %>">
+  <% end %>
     <td><%= issue.detail %></td>
     <td><%= issue.vote %></td>
   </tr>
@@ -15,22 +25,5 @@
 </table>
 
 <div class="current-issue-container">
-  <label>Current Issue</label>
-  <div class="current-issue">
-    <% if @current_issue %>
-      <%= @current_issue.detail %>
-      <div class="thumb">
-        <div class="thumb-wrapper up" data-issue-id="<%= @current_issue.id %>">
-          <i class="fa fa-thumbs-o-up"></i>
-        </div>
-        <div class="thumb-wrapper down" data-issue-id="<%= @current_issue.id %>">
-          <i class="fa fa-thumbs-o-down"></i>
-        </div>
-        <div class="tip">Press 'Enter' to vote up and 'Space' to vote down.</div>
-      </div>
-      <%= render 'add_note', :current_issue => @current_issue %>
-    <% else %>
-      No More Issues!
-    <% end %>
-  </div>
+  <%= render 'current_issue' %>
 </div>

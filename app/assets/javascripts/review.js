@@ -12,16 +12,40 @@ $(function() {
 		do_thumb_vote_ajax(thumb_vote_url, issue_id);
 	});
 
-	$('body').keypress(function(e) {
-		e.preventDefault();
-		issue_id = $('.thumb-wrapper.up').data('issue-id');
-		// enter
-		if (e.which == 13) { 
-			do_thumb_vote_ajax('/issues/thumb-up', issue_id);
-		// space 
-		} else if (e.which == 32) {
-			do_thumb_vote_ajax('/issues/thumb-down', issue_id);
-		};
+	if ($('.thumb-wrapper').length > 0) {
+		$('body').keypress(function(e) {
+			e.preventDefault();
+			issue_id = $('.thumb-wrapper.up').data('issue-id');
+			// enter
+			if (e.which == 13) { 
+				do_thumb_vote_ajax('/issues/thumb-up', issue_id);
+			// space 
+			} else if (e.which == 32) {
+				do_thumb_vote_ajax('/issues/thumb-down', issue_id);
+			};
+		});
+
+		$('.new-note').keypress(function(e) {
+		    e.stopPropagation();
+		});
+	};
+
+	$('#next-issue').click(function() {
+		$current = $('tr.current');
+		var next_issue_id = $current.next().data('issue-id');
+		$.ajax({
+			url: '/issues/next-issue',
+			type: 'GET',
+			data: {'next_issue_id': next_issue_id},
+			success: function(response) {
+				$current.removeClass('current');
+				$current.next().addClass('current');
+				$('.current-issue-container').html(response);
+			},
+			error: function(response) {
+
+			}
+		});
 	});
 });
 
@@ -40,4 +64,4 @@ function do_thumb_vote_ajax (thumb_vote_url, issue_id) {
 			alert("Error when thumb vote.")
 		}
 	});
-}
+};
