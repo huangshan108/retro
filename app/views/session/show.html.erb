@@ -1,11 +1,11 @@
 <div class="stage">
 	<%= link_to 'Let\'s Vote', vote_stage_path(:session_id => @s.id, :name => @user.name), method: :post %>
 </div>
-<div class="create-issue">
+<form action="javascript:void(0);" class="create-issue">
 	<label>Create a new issue:</label>
 	<input type="text" id="new-issue" data-session-id='<%= @s.id %>' data-user-id='<%= @user.id %>'>
-	<button class="create-new-issue">Create</button>
-</div>
+	<input type="submit" value="Create" class="create-new-issue">
+</form>
 
 <div class="issue-list">
 	<%= render 'issue_list', :is_vote => false %>
