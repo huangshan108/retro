@@ -50,3 +50,9 @@ end
 
 gem 'newrelic_rpm'
 gem "font-awesome-rails"
+gem 'faye-websocket'
+
+gem "autoprefixer-rails"
+gem "puma"
+gem "devise"
+gem "hirb"

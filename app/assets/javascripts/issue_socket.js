@@ -40,5 +40,5 @@ function pack(obj) {
 };
 
 function unpack(str) {
-	return JSON.parse(str);
+	// return JSON.parse(str);
 }
