@@ -2,12 +2,12 @@
 <ul class="issue-list">
   <% @issues.each do |issue| %>
     <li>
-    	<span><%= issue.detail %></span>
-    	<% if is_vote %>
-	    	<span class="vote">
-	    		<input type="number" data-issue-id="<%= issue.id %>" value="0" min="0" max="5">
-	    	</span>
-	    <% end %>
+      <span><%= issue.detail %></span>
+      <% if is_vote %>
+        <span class="vote">
+          <input type="number" data-issue-id="<%= issue.id %>" value="0" min="0" max="5">
+        </span>
+      <% end %>
     </li>
   <% end %>
 </ul>

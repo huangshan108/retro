@@ -1,4 +1,4 @@
 class User < ActiveRecord::Base
-	belongs_to :session
-	has_many :issues
+  belongs_to :session
+  has_many :issues
 end

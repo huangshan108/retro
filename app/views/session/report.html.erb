@@ -3,19 +3,19 @@
 </div>
 <div class="report-title">Retro Report</div>
 <div class="report-body">
-	<% @issues.each do |issue| %>
-		<p class="issue-detail">
-			<%= issue.detail %>
-		</p>
-		<% if issue.notes.any? %>	
-			<div class="note-header">
-				Notes:
-			</div>
-			<ul>
-				<% issue.notes.each do |note| %>
-					<li><%= note.detail %></li>
-				<% end %>
-			</ul>
-		<% end %>
-	<% end %>
+  <% @issues.each do |issue| %>
+    <p class="issue-detail">
+      <%= issue.detail %>
+    </p>
+    <% if issue.notes.any? %> 
+      <div class="note-header">
+        Notes:
+      </div>
+      <ul>
+        <% issue.notes.each do |note| %>
+          <li><%= note.detail %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
 </div>
