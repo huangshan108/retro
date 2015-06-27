@@ -6,7 +6,7 @@
     <% end %>
   </ul>
 </div>
-<div class="new-note">
-  <input type="text" name="note" data-issue-id="<%= current_issue.id %>">
-  <button id="submit-note">Submit Note</button>
-</div>
+<form id="new-note-form">
+  <input id="new-note" type="text" name="note" data-issue-id="<%= current_issue.id %>">
+  <button id="submit-new-note">Submit Note</button>
+</form>
