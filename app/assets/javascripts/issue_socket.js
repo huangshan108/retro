@@ -18,15 +18,17 @@ IssueSocket.prototype.initBinds = function() {
   if ($('#submit-vote').length > 0) {
     _this.bindVote();
   };
-  // this.new_issue_form.submit(function(e) {
-  //   e.preventDefault();
-  //   _this.sendIssue($('#new-issue').val());
-  // });
   this.socket.onmessage = function(e) {
-    console.log(e);
-    var obj = unpack(e.data);
-    console.log(obj);
-    // _this.sendIssue();
+    var resp = unpack(e.data);
+    console.log(resp);
+    switch(resp.model) {
+      case 'issue':
+        appendToList('issue', resp.detail);
+        $('#new-issue').val("");
+        break;
+      default:
+        break;
+    }
   }
 };
 
@@ -67,10 +69,6 @@ IssueSocket.prototype.sendIssue = function() {
   this.send(req);
 };
 
-IssueSocket.prototype.sendIssue = function() {
-
-};
-
 IssueSocket.prototype.sendNote = function() {
 
 };
@@ -97,6 +95,10 @@ function pack(obj) {
 
 function unpack(str) {
   return JSON.parse(str);
+}
+
+function appendToList(list_type, content) {
+  $('ul.' + list_type + '-list').append('<li>' + content + '</li>');
 }
 
 $(function() {

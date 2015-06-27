@@ -25,15 +25,9 @@ end
 def spawn_socket
   socket = Faye::WebSocket.new env
   resp = {
-    type: 'message',
-    data: 'Success'
-  }
-=begin
-  resp = {
     type: 'open',
     status: 'success'
   }
-=end
   socket.on :open do
     socket.send resp.to_json
   end

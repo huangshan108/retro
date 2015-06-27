@@ -47,10 +47,6 @@ $(function(){
   });
 });
 
-function appendToList(issue) {
-  $('ul').append('<li>' + issue + '</li>');
-}
-
 function updateVoteCount() {
   votes = 0
   $('.vote input').each(function(i, elem) {
