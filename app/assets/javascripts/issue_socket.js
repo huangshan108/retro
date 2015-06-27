@@ -88,19 +88,3 @@ IssueSocket.prototype.send = function(req) {
 IssueSocket.prototype.success = function() {
   $('ul.issue-list').append('<li>' + this.detail + '</li>')
 };
-
-function pack(obj) {
-  return JSON.stringify(obj);
-};
-
-function unpack(str) {
-  return JSON.parse(str);
-}
-
-function appendToList(list_type, content) {
-  $('ul.' + list_type + '-list').append('<li>' + content + '</li>');
-}
-
-$(function() {
-  var issue_socket = new IssueSocket();
-});
