@@ -1,8 +1,4 @@
-var IssueSocket = function(session_id, user_name, new_issue_form) {
-  this.session_id = session_id;
-  this.user_name = user_name;
-  this.new_issue_form = new_issue_form;
-
+var IssueSocket = function() {
   this.socket = new WebSocket(App.websocket_url + "session/" + this.session_id);
 
   this.initBinds();
@@ -10,15 +6,44 @@ var IssueSocket = function(session_id, user_name, new_issue_form) {
 
 IssueSocket.prototype.initBinds = function() {
   var _this = this;
-  this.new_issue_form.submit(function(e) {
-    e.preventDefault();
-    _this.sendIssue($('#new-issue').val());
-  });
+  if ($('#new-issue-form').length > 0) {
+    _this.bindNewIssue();
+  };
+  if ($('#new-note-form').length > 0) {
+    _this.bindNewNote();
+  };
+  if ($('.count-down').length > 0) {
+    _this.bindCountDown();
+  };
+  if ($('#submit-vote').length > 0) {
+    _this.bindVote();
+  };
+  // this.new_issue_form.submit(function(e) {
+  //   e.preventDefault();
+  //   _this.sendIssue($('#new-issue').val());
+  // });
   this.socket.onmessage = function(e) {
     console.log(e);
     var obj = unpack(e.data);
-    _this.sendIssue();
+    console.log(obj);
+    // _this.sendIssue();
   }
+};
+
+IssueSocket.prototype.bindNewIssue = function() {
+  
+};
+
+IssueSocket.prototype.bindNewNote = function() {
+
+};
+
+IssueSocket.prototype.bindCountDown = function() {
+
+};
+
+IssueSocket.prototype.bindVote = function() {
+
 };
 
 IssueSocket.prototype.sendIssue = function(detail) {
@@ -40,5 +65,9 @@ function pack(obj) {
 };
 
 function unpack(str) {
-  // return JSON.parse(str);
+  return JSON.parse(str);
 }
+
+$(function() {
+  var issue_socket = new IssueSocket();
+});

@@ -1,3 +1,4 @@
+require 'json'
 class IssueSocket
   attr_reader :env
 
@@ -8,10 +9,7 @@ class IssueSocket
   def call env
     @env = env
     if socket_request?
-      socket = Faye::WebSocket.new env
-      socket.on :open do
-        socket.send "Hello!"
-      end
+      socket = spawn_socket
       socket.rack_response
     else
       @app.call env
@@ -23,3 +21,38 @@ class IssueSocket
     Faye::WebSocket.websocket? env
   end
 end
+
+def spawn_socket
+  socket = Faye::WebSocket.new env
+  resp = {
+    type: 'message',
+    data: 'Success'
+  }
+=begin
+  resp = {
+    type: 'open',
+    status: 'success'
+  }
+=end
+  socket.on :open do
+    socket.send resp.to_json
+  end
+
+  socket.on :message do |event|
+    # socket.send event.data
+    req = JSON.parse(event.data)
+    resp = {}
+    case req['type']
+    when 'sync_time'
+      resp = Handler.handle_sync_time req
+    when 'new_issue'
+      resp = Handler.create_new_issue req
+    when 'new_note'
+      resp = Handler.create_new_note req
+    end
+    socket.send resp.to_json
+  end
+
+  socket
+end
+

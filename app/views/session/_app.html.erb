@@ -2,11 +2,4 @@
   var App = {
     websocket_url: "ws://<%= request.host %>:<%= request.port %>/"
   };
-  $(function() {
-    var user_name = "<%= user_name %>";
-    var session_id = "<%= session_id %>";
-    var new_issue_form = $('#new-issue-form');
-
-    var issue_socket = new IssueSocket(session_id, user_name, new_issue_form);
-  });
 </script>
