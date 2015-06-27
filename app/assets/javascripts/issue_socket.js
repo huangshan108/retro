@@ -31,7 +31,13 @@ IssueSocket.prototype.initBinds = function() {
 };
 
 IssueSocket.prototype.bindNewIssue = function() {
-  
+  var _this = this;
+  var $new_issue_form = $('#new-issue-form');
+  $new_issue_form.submit(function(e) {
+    e.preventDefault();
+    console.log("submitting #new-issue-form");
+    _this.sendIssue();
+  });
 };
 
 IssueSocket.prototype.bindNewNote = function() {
@@ -46,14 +52,39 @@ IssueSocket.prototype.bindVote = function() {
 
 };
 
-IssueSocket.prototype.sendIssue = function(detail) {
-  this.detail = detail;
-  issue_obj = {
-    'session_id': this.session_id,
-    'user_name': this.user_name,
-    'detail': this.detail
+IssueSocket.prototype.sendIssue = function() {
+  var $new_issue = $('#new-issue');
+  var detail = $new_issue.val();
+  var session_id = $new_issue.data('session-id');
+  var user_id = $new_issue.data('user-id');  
+  var req = {
+    'type': 'new_issue',
+    'detail': detail,
+    'session_id': session_id,
+    'user_id': user_id,
   }
-  this.socket.send(pack(issue_obj));
+  console.log('req', req);
+  this.send(req);
+};
+
+IssueSocket.prototype.sendIssue = function() {
+
+};
+
+IssueSocket.prototype.sendNote = function() {
+
+};
+
+IssueSocket.prototype.sendCountDown = function() {
+
+};
+
+IssueSocket.prototype.sendVote = function() {
+
+};
+
+IssueSocket.prototype.send = function(req) {
+  this.socket.send(pack(req));
 };
 
 IssueSocket.prototype.success = function() {

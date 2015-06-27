@@ -1,16 +1,16 @@
 module Handler
-  def handle_sync_time req
+  def self.handle_sync_time req
     resp['type' => 'sync_time']
     sec_left = Issue.find(req['issue_id']).get_sec_left()
     resp['sec_left' => sec_left]
     resp
   end
 
-  def create_new_issue req
+  def self.create_new_issue req
     issue = Issue.create(
-      :detail => req[:detail], 
-      :session_id => req[:session_id], 
-      :user_id => req[:user_id],
+      :detail => req['detail'], 
+      :session_id => req['session_id'], 
+      :user_id => req['user_id'],
       :is_current => false,
       :vote => 0,
       :thumb_up => 0,
@@ -20,10 +20,10 @@ module Handler
     issue
   end
 
-  def create_new_note req
+  def self.create_new_note req
     note = Note.create(
-      :detail => req[:note], 
-      :issue_id => req[:issue_id]
+      :detail => req['note'], 
+      :issue_id => req['issue_id']
     ).as_json
     note['model'] = 'note'
     note
