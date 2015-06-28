@@ -37,8 +37,7 @@ IssueSocket.prototype.initBinds = function() {
 
 IssueSocket.prototype.bindNewIssue = function() {
   var _this = this;
-  var $new_issue_form = $('#new-issue-form');
-  $new_issue_form.submit(function(e) {
+  $('body').on('submit', '#new-issue-form', function(e) {
     e.preventDefault();
     console.log("submitting #new-issue-form");
     _this.sendIssue();
@@ -47,8 +46,7 @@ IssueSocket.prototype.bindNewIssue = function() {
 
 IssueSocket.prototype.bindNewNote = function() {
   var _this = this;
-  var $new_note_form = $('#new-note-form');
-  $new_note_form.submit(function(e) {
+  $('body').on('submit', '#new-note-form', function(e) {
     e.preventDefault();
     console.log("submitting #new-note-form");
     _this.sendNote();
