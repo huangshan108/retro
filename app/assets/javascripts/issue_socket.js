@@ -1,6 +1,5 @@
 var IssueSocket = function() {
-  this.socket = new WebSocket(App.websocket_url + "session/" + this.session_id);
-
+  this.socket = new WebSocket(App.websocket_url);
   this.initBinds();
 };
 

@@ -4,12 +4,14 @@ class IssueSocket
 
   def initialize app
     @app = app
+    @clients = []
   end
 
   def call env
     @env = env
     if socket_request?
       socket = spawn_socket
+      @clients << socket
       socket.rack_response
     else
       @app.call env
@@ -31,7 +33,6 @@ def spawn_socket
   socket.on :open do
     socket.send resp.to_json
   end
-
   socket.on :message do |event|
     req = JSON.parse(event.data)
     resp = {}
@@ -43,9 +44,14 @@ def spawn_socket
     when 'thumb_vote'
       resp = Handler.handle_thumb_vote req
     end
-    socket.send resp.to_json
+    @clients.reject{ |client| !same_session?(client, socket) }.each do |client|
+      client.send resp.to_json
+    end
   end
-
   socket
+end
+
+def same_session? client, socket
+  client.env["REQUEST_PATH"] == socket.env["REQUEST_PATH"]
 end
 
