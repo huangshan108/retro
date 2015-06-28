@@ -43,7 +43,13 @@ IssueSocket.prototype.bindNewIssue = function() {
 };
 
 IssueSocket.prototype.bindNewNote = function() {
-
+  var _this = this;
+  var $new_note_form = $('#new-note-form');
+  $new_note_form.submit(function(e) {
+    e.preventDefault();
+    console.log("submitting #new-note-form");
+    _this.sendNote();
+  });
 };
 
 IssueSocket.prototype.bindCountDown = function() {
@@ -63,14 +69,23 @@ IssueSocket.prototype.sendIssue = function() {
     'type': 'new_issue',
     'detail': detail,
     'session_id': session_id,
-    'user_id': user_id,
+    'user_id': user_id
   }
   console.log('req', req);
   this.send(req);
 };
 
 IssueSocket.prototype.sendNote = function() {
-
+  var $new_note = $('#new-note');
+  var detail = $new_note.val();
+  var issue_id = $new_note.data('issue-id');
+  var req = {
+    'type': 'new_note',
+    'detail': detail,
+    'issue_id': issue_id
+  }
+  console.log('req', req);
+  this.send(req);
 };
 
 IssueSocket.prototype.sendCountDown = function() {

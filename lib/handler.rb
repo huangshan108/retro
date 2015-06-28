@@ -22,7 +22,7 @@ module Handler
 
   def self.create_new_note req
     note = Note.create(
-      :detail => req['note'], 
+      :detail => req['detail'], 
       :issue_id => req['issue_id']
     ).as_json
     note['model'] = 'note'

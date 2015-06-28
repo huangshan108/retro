@@ -25,7 +25,7 @@ $(function() {
       };
     });
 
-    $('body').on( "keypress", ".new-note", function(e) {
+    $('body').on( "keypress", "#new-note", function(e) {
       e.stopPropagation();
     });
   };
