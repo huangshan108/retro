@@ -26,6 +26,9 @@ IssueSocket.prototype.initBinds = function() {
         appendToList('issue', resp.detail);
         $('#new-issue').val("");
         break;
+      case 'note':
+        appendToList('note', resp.detail);
+        $('#new-note').val("");
       default:
         break;
     }
