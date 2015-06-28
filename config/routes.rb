@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post 'issues/thumb-up' => 'issues#thumb_up'
   post 'issues/thumb-down' => 'issues#thumb_down'
   get 'issues/next-issue' => 'issues#next_issue'
+  get 'issues/get-sec-elapsed' => 'issues#get_sec_elapsed'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

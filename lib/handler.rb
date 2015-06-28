@@ -1,10 +1,10 @@
 module Handler
-  def self.handle_sync_time req
-    resp['type' => 'sync_time']
-    sec_left = Issue.find(req['issue_id']).get_sec_left()
-    resp['sec_left' => sec_left]
-    resp
-  end
+  # def self.handle_sync_time req
+  #   sec_elapsed = Issue.find(req['issue_id']).get_sec_elapsed
+  #   resp['sec_elapsed' => sec_elapsed]
+  #   resp['type'] = 'count_down'
+  #   resp
+  # end
 
   def self.create_new_issue req
     issue = Issue.create(
@@ -16,7 +16,7 @@ module Handler
       :thumb_up => 0,
       :thumb_down => 0
     ).as_json
-    issue['model'] = 'issue'
+    issue['type'] = 'issue'
     issue
   end
 
@@ -25,7 +25,13 @@ module Handler
       :detail => req['detail'], 
       :issue_id => req['issue_id']
     ).as_json
-    note['model'] = 'note'
+    note['type'] = 'note'
     note
+  end
+
+  def self.handle_vote req
+
+    resp['type'] = 'vote'
+    resp
   end
 end

@@ -37,12 +37,14 @@ def spawn_socket
     req = JSON.parse(event.data)
     resp = {}
     case req['type']
-    when 'sync_time'
-      resp = Handler.handle_sync_time req
+    # when 'count_down'
+    #   resp = Handler.handle_count_down req
     when 'new_issue'
       resp = Handler.create_new_issue req
     when 'new_note'
       resp = Handler.create_new_note req
+    when 'vote'
+      resp = Handler.handle_vote req
     end
     socket.send resp.to_json
   end

@@ -12,16 +12,16 @@ IssueSocket.prototype.initBinds = function() {
   if ($('#new-note-form').length > 0) {
     _this.bindNewNote();
   };
-  if ($('.count-down').length > 0) {
-    _this.bindCountDown();
-  };
+  // if ($('.count-down').length > 0) {
+  //   _this.bindCountDown();
+  // };
   if ($('#submit-vote').length > 0) {
     _this.bindVote();
   };
   this.socket.onmessage = function(e) {
     var resp = unpack(e.data);
     console.log(resp);
-    switch(resp.model) {
+    switch(resp.type) {
       case 'issue':
         appendToList('issue', resp.detail);
         $('#new-issue').val("");
@@ -53,9 +53,9 @@ IssueSocket.prototype.bindNewNote = function() {
   });
 };
 
-IssueSocket.prototype.bindCountDown = function() {
-
-};
+// IssueSocket.prototype.bindCountDown = function() {
+//   _this.sendCountDown();
+// };
 
 IssueSocket.prototype.bindVote = function() {
 
@@ -89,9 +89,15 @@ IssueSocket.prototype.sendNote = function() {
   this.send(req);
 };
 
-IssueSocket.prototype.sendCountDown = function() {
-
-};
+// IssueSocket.prototype.sendCountDown = function() {
+//   var issue_id = $('.current-issue').data('issue-id');
+//   var req = {
+//     'type': 'count_down',
+//     'issue_id': 'issue_id'
+//   }
+//   console.log('req', req);
+//   this.send(req);
+// };
 
 IssueSocket.prototype.sendVote = function() {
 

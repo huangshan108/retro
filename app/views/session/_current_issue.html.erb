@@ -1,5 +1,5 @@
 <label>Current Issue</label>
-<div class="current-issue">
+<div class="current-issue" data-issue-id="<%= @current_issue.id %>">
   <% if @current_issue %>
     <%= @current_issue.detail %>
     <div class="thumb">
@@ -18,3 +18,19 @@
     </div>
   <% end %>
 </div>
+<script type="text/javascript">
+  $(function() {
+    $.ajax({
+      url: '/issues/get-sec-elapsed',
+      type: 'GET',
+      dataType: 'JSON',
+      data: { 'cur_issue_id': <%= @current_issue.id %> },
+      success: function(response) {
+        count_down(15 - parseInt(response.data));
+      },
+      error: function(response) {
+
+      }
+    });
+  });
+</script>
