@@ -48,10 +48,6 @@ IssueSocket.prototype.bindNewNote = function() {
   });
 };
 
-// IssueSocket.prototype.bindCountDown = function() {
-//   _this.sendCountDown();
-// };
-
 IssueSocket.prototype.bindVote = function() {
   var _this = this;
   $('body').on('keypress', 'input', function(e) {
@@ -104,16 +100,6 @@ IssueSocket.prototype.sendNote = function() {
   console.log('req', req);
   this.send(req);
 };
-
-// IssueSocket.prototype.sendCountDown = function() {
-//   var issue_id = $('.current-issue').data('issue-id');
-//   var req = {
-//     'type': 'count_down',
-//     'issue_id': 'issue_id'
-//   }
-//   console.log('req', req);
-//   this.send(req);
-// };
 
 IssueSocket.prototype.sendVote = function(req) {
   this.send(req);

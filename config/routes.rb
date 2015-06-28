@@ -10,11 +10,7 @@ Rails.application.routes.draw do
   post 'session/review_stage' => 'session#review_stage', as: :review_stage
   post 'session/report_stage' => 'session#report_stage', as: :report_stage
 
-  post 'issues/create' => 'issues#create'
   post 'issues/vote' => 'issues#vote'
-  post 'issues/new-note' => 'notes#create', as: :create_new_note
-  post 'issues/thumb-up' => 'issues#thumb_up'
-  post 'issues/thumb-down' => 'issues#thumb_down'
   get 'issues/next-issue' => 'issues#next_issue'
   get 'issues/get-sec-elapsed' => 'issues#get_sec_elapsed'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -33,12 +33,9 @@ def spawn_socket
   end
 
   socket.on :message do |event|
-    # socket.send event.data
     req = JSON.parse(event.data)
     resp = {}
     case req['type']
-    # when 'count_down'
-    #   resp = Handler.handle_count_down req
     when 'new_issue'
       resp = Handler.create_new_issue req
     when 'new_note'

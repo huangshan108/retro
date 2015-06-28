@@ -8,6 +8,9 @@ class Issue < ActiveRecord::Base
   end
 
   def get_sec_elapsed
+    if self.is_current && self.count_down_init_timestamp == nil
+      init_count_down
+    end
     Time.now - self.count_down_init_timestamp
   end
 end

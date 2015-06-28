@@ -1,11 +1,4 @@
 module Handler
-  # def self.handle_sync_time req
-  #   sec_elapsed = Issue.find(req['issue_id']).get_sec_elapsed
-  #   resp['sec_elapsed' => sec_elapsed]
-  #   resp['type'] = 'count_down'
-  #   resp
-  # end
-
   def self.create_new_issue req
     issue = Issue.create(
       :detail => req['detail'], 
