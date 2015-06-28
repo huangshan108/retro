@@ -4,9 +4,11 @@
     <%= @current_issue.detail %>
     <div class="thumb">
       <div class="thumb-wrapper up" data-issue-id="<%= @current_issue.id %>">
+        <div class="up-count"><%= @current_issue.thumb_up %></div>
         <i class="fa fa-thumbs-o-up"></i>
       </div>
       <div class="thumb-wrapper down" data-issue-id="<%= @current_issue.id %>">
+        <div class="down-count"><%= @current_issue.thumb_down %></div>
         <i class="fa fa-thumbs-o-down"></i>
       </div>
       <div class="tip">Press 'Enter' to vote up and 'Space' to vote down.</div>

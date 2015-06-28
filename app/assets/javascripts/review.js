@@ -12,23 +12,7 @@ $(function() {
     do_thumb_vote_ajax(thumb_vote_url, issue_id);
   });
 
-  if ($('.thumb-wrapper').length > 0) {
-    $('body').keypress(function(e) {
-      e.preventDefault();
-      issue_id = $('.thumb-wrapper.up').data('issue-id');
-      // enter
-      if (e.which == 13) { 
-        do_thumb_vote_ajax('/issues/thumb-up', issue_id);
-      // space 
-      } else if (e.which == 32) {
-        do_thumb_vote_ajax('/issues/thumb-down', issue_id);
-      };
-    });
 
-    $('body').on( "keypress", "#new-note", function(e) {
-      e.stopPropagation();
-    });
-  };
 
   $('#next-issue').click(function() {
     var $current = $('tr.current');

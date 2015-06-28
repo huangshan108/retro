@@ -29,9 +29,18 @@ module Handler
     note
   end
 
-  def self.handle_vote req
-
-    resp['type'] = 'vote'
+  def self.handle_thumb_vote req
+    issue = Issue.find(req['issue_id'])
+    if req['vote_type'] == 'up'
+      issue.increment!(:thumb_up)
+    else req['vote_type'] == 'down'
+      issue.increment!(:thumb_down)
+    end
+    resp = {}
+    resp['thumb_up'] = issue.thumb_up
+    resp['thumb_down'] = issue.thumb_down
+    resp['active'] = 2
+    resp['type'] = 'thumb_vote'
     resp
   end
 end

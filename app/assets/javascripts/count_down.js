@@ -6,11 +6,10 @@ function count_down(init) {
     if (init == 0) {
       console.log('cleared');
       clearInterval(inter);
-      check_thumb();
     };    
   }, 1000);
 };
 
-function check_thumb() {
+function checkCountDown(up, down, active) {
   
 };

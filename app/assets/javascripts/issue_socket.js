@@ -6,18 +6,9 @@ var IssueSocket = function() {
 
 IssueSocket.prototype.initBinds = function() {
   var _this = this;
-  if ($('#new-issue-form').length > 0) {
-    _this.bindNewIssue();
-  };
-  if ($('#new-note-form').length > 0) {
-    _this.bindNewNote();
-  };
-  // if ($('.count-down').length > 0) {
-  //   _this.bindCountDown();
-  // };
-  if ($('#submit-vote').length > 0) {
-    _this.bindVote();
-  };
+  _this.bindNewIssue();
+  _this.bindNewNote();
+  _this.bindVote();
   this.socket.onmessage = function(e) {
     var resp = unpack(e.data);
     console.log(resp);
@@ -29,6 +20,10 @@ IssueSocket.prototype.initBinds = function() {
       case 'note':
         appendToList('note', resp.detail);
         $('#new-note').val("");
+      case 'thumb_vote':
+        $('.up-count').text(resp.thumb_up);
+        $('.down-count').text(resp.thumb_down);
+        checkCountDown(resp.up, resp.down, resp.active);
       default:
         break;
     }
@@ -58,6 +53,27 @@ IssueSocket.prototype.bindNewNote = function() {
 // };
 
 IssueSocket.prototype.bindVote = function() {
+  var _this = this;
+  $('body').on('keypress', 'input', function(e) {
+    e.stopPropagation();
+  });
+  
+  $('body').on('keypress', function(e) {
+    e.preventDefault();
+    var issue_id = $('.current-issue').data('issue-id');
+    req = {
+      'type': 'thumb_vote',
+      'issue_id': issue_id
+    }
+    if (e.which == 13) { // Enter
+      req['vote_type'] = 'up';
+      _this.sendVote(req);
+    } else if (e.which == 32) { // Space
+      req['vote_type'] = 'down';
+      _this.sendVote(req);
+    };
+  });
+
 
 };
 
@@ -99,8 +115,8 @@ IssueSocket.prototype.sendNote = function() {
 //   this.send(req);
 // };
 
-IssueSocket.prototype.sendVote = function() {
-
+IssueSocket.prototype.sendVote = function(req) {
+  this.send(req);
 };
 
 IssueSocket.prototype.send = function(req) {

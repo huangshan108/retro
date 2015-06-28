@@ -43,8 +43,8 @@ def spawn_socket
       resp = Handler.create_new_issue req
     when 'new_note'
       resp = Handler.create_new_note req
-    when 'vote'
-      resp = Handler.handle_vote req
+    when 'thumb_vote'
+      resp = Handler.handle_thumb_vote req
     end
     socket.send resp.to_json
   end
