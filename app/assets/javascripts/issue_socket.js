@@ -108,7 +108,3 @@ IssueSocket.prototype.sendVote = function(req) {
 IssueSocket.prototype.send = function(req) {
   this.socket.send(pack(req));
 };
-
-IssueSocket.prototype.success = function() {
-  $('ul.issue-list').append('<li>' + this.detail + '</li>')
-};
