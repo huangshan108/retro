@@ -1,4 +1,11 @@
 <div class="subtitle">Current Issue</div>
+<div class="tips">
+  <ul>
+    <li>This is the current issue that your team is talking about.</li>
+    <li>Press [Enter] key to thumb up and [Space] key to thumb down.</li>
+    <li>When half of the team members thumb up, the countdown will be automatically added 30 more seconds.</li>
+  </ul>
+</div>
 <div class="current-issue" data-issue-id="<%= @current_issue.id %>">
   <% if @current_issue %>
     <div class="issue-list-wrapper">
@@ -18,12 +25,15 @@
         <div class="down-count"><%= @current_issue.thumb_down %></div>
         <i class="fa fa-thumbs-o-down"></i>
       </div>
-      <div class="tip">Press 'Enter' to vote up and 'Space' to vote down.</div>
     </div>
     <%= render 'session/add_note.html.erb', :current_issue => @current_issue %>
   <% else %>
-    <div class="no-more-issues">
-      No More Issues!
+    <div class="issue-list-wrapper">
+      <div class="issue-list">
+        <div class="issue-box no-more-issues" data-session-id="<%= @s.id %>" data-issue-id="<%= @current_issue.id %>">
+           No More Issues!
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

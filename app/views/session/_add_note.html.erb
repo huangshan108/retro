@@ -1,12 +1,19 @@
 <div class="existing-notes">
-  <div class="subtitle">Notes:</div>
-  <ul class="note-list">
-    <% current_issue.notes.each do |note| %>
-      <li><%= note.detail %></li>
-    <% end %>
-  </ul>
+  <div class="subtitle">Notes</div>
+  <div class="tips">
+    <ul>
+      <li>Feel free to take notes for current issue.</li>
+      <li>Notes taken by other team members will be shown automatically, so you don't have to refresh the page.</li>
+    </ul>
+  </div>
+  <form id="new-note-form">
+    <input id="new-note" type="text" name="note" data-issue-id="<%= current_issue.id %>" class="inline" placeholder="Add notes here...">
+    <input id="submit-new-note" type="submit" value="Submit" class="inline">
+  </form>
+<div class="note-list">
+  <% current_issue.notes.each do |note| %>
+    <div class="note-box">
+      <span><%= note.detail %></span>
+    </div>
+  <% end %>
 </div>
-<form id="new-note-form">
-  <input id="new-note" type="text" name="note" data-issue-id="<%= current_issue.id %>">
-  <input id="submit-new-note" type="submit" value="submit"></input>
-</form>

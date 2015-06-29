@@ -1,3 +1,29 @@
-// Place all the styles related to the notes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#new-note-form {
+  text-align: center;
+  margin-left: 85px;
+  margin-top: 40px;
+  #new-note {
+    width: 600px;
+  }
+}
+.note-list {
+  margin-top: 50px;
+  .note-box {
+    &:first-child {
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    width: 700px;
+    margin-left: calc(50% - 350px);
+    text-align: left;
+    color: white;
+    line-height: 40px;
+    padding: 0 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    &.current {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+    &.no-more-issues {
+      text-align: center;
+    }
+  }
+}

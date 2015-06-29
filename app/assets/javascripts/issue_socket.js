@@ -32,7 +32,8 @@ function issueCallback(resp) {
 }
 
 function noteCallback(resp) {
-  appendToList('note', resp.detail);
+  var note_box = '<div class="note-box"><span>' + resp.detail + '</span></div>';
+  $(note_box).hide().prependTo(".note-list").fadeIn("slow");
   $('#new-note').val("");
 }
 
