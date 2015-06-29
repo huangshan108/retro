@@ -1,3 +1,19 @@
-// Place all the styles related to the session controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.session-id {
+  width: 300px;
+}
+.join-session-form {
+  display: inline-block;
+}
+.create-session-form {
+  display: inline-block;
+  position: relative;
+  left: -70px;
+  label {
+    margin-right: 5px; 
+  }
+}
+
+.session-join-create-wrapper {
+  margin-top: 80px;
+  text-align: center;
+}

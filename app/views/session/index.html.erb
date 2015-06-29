@@ -1,10 +1,27 @@
-<%= form_tag(:show_session_params_id) do %>
-  <label>Please enter session id:</label>
-  <%= text_field_tag 'id' %>
-  <%= submit_tag 'Join' %>
-<% end %>
+<div class="welcome-wrapper">
+  <div class="title">Welcome to Retro</div>
+  <div class="tips">
+    <ul>
+      <li>
+        You can join a session by enter your session id below.
+      </li>
+      <li>
+        You can also create a new session. 
+      </li>
+      <li>
+        The person who creates the session will be the holder for that Retro plan meeting.
+      </li>
+    </ul> 
+  </div>
+</div>
 
-<%= form_tag(:create_session) do %>
-  <label>Create a session</label>
-  <%= submit_tag 'Create' %>
-<% end %>
+<div class="session-join-create-wrapper">
+  <%= form_tag(:show_session_params_id, :class => "join-session-form") do %>
+    <%= text_field_tag 'id', nil, :placeholder => "Please enter session id:", class: "session-id inline"%>
+    <%= submit_tag 'Join', class: "session-id-submit inline" %>
+  <% end %>
+  <%= form_tag(:create_session, :class => "create-session-form") do %>
+    <label>or</label>
+    <%= submit_tag 'Create' %>
+  <% end %>
+</div>

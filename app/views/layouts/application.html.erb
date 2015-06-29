@@ -5,13 +5,20 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <% if flash[:notice] %>
- <div class="notice"><%= flash[:notice] %></div>
+ <div class="flash notice"><%= flash[:notice] %></div>
 <% elsif flash[:error] %>
-	<div class="error"><%= flash[:error] %></div>
+	<div class="flash error"><%= flash[:error] %></div>
 <% end %>
+<script type="text/javascript">
+  $(function(){
+    $('.flash').delay(1000).fadeOut(300);
+  });
+</script>
+<div class="backgroud-overlay"></div>
 <%= yield %>
 
 <%= render 'session/app' %>
