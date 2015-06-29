@@ -1,5 +1,5 @@
 <div class="tips">
-  <div class="tips-label">Tips for voting issues</div>
+  <div class="subtitle">Tips for voting issues</div>
   <ul>
     <li>You have 5 votes in total.</li>
     <li>You are allowed to put all your votes on a single issue.</li>
@@ -11,9 +11,15 @@
   <%= link_to 'Let\'s Review', review_stage_path(:session_id => @s.id, :name => @user.name), method: :post %>
 </div>
 <div class="vote-counter">
+<% if @user.voted? %>
+  Vote submitted!  
+<% else %>
   You have <span>5</span> vote(s) left.
+<% end %>
 </div>
 <div class="issue-list-wrapper">
-  <%= render 'issue_list', :is_vote => true %>
+  <%= render 'issue_list', :is_vote => true, :voted => @user.voted? %>
+  <% if !@user.voted? %>
+    <input type="submit" id="submit-vote" value="Submit" data-user-id="<%= @user.id %>" data-session-id="<%= @s.id %>">
+  <% end %>
 </div>
-<input type="submit" id="submit-vote" value="Submit" data-user-id="<%= @user.id %>" data-session-id="<%= @s.id %>"></input>

@@ -1,7 +1,14 @@
-<label>Current Issue</label>
+<div class="subtitle">Current Issue</div>
 <div class="current-issue" data-issue-id="<%= @current_issue.id %>">
   <% if @current_issue %>
-    <%= @current_issue.detail %>
+    <div class="issue-list-wrapper">
+      <div class="issue-list">
+        <div class="issue-box" data-session-id="<%= @s.id %>" data-issue-id="<%= @current_issue.id %>">
+          <span class="votes-count"><%= @current_issue.vote %> <%= 'vote'.pluralize(@current_issue.vote) %></span>
+          <span class="issue-detail"><%= @current_issue.detail %></span>
+        </div>
+      </div>
+    </div>
     <div class="thumb">
       <div class="thumb-wrapper up" data-issue-id="<%= @current_issue.id %>">
         <div class="up-count"><%= @current_issue.thumb_up %></div>

@@ -7,23 +7,22 @@
 <div class="next-issue-wrapper">
   <button id="next-issue">Next Issue</button>
 </div>
-<table>
-  <tr>
-    <th>Issue</th>
-    <th>Votes</th>
-  </tr>
-  <% @issues.each do |issue| %>
-  <% if issue.is_current %>
-  <tr class="current" data-session-id="<%= @s.id %>" data-issue-id="<%= issue.id %>">
-  <% else %>
-  <tr data-session-id="<%= @s.id %>" data-issue-id="<%= issue.id %>">
-  <% end %>
-    <td><%= issue.detail %></td>
-    <td><%= issue.vote %></td>
-  </tr>
-  <% end %>
-</table>
 
+<div class="issue-list-wrapper">
+  <div class="subtitle">Issue List</div>
+  <div class="issue-list">
+    <% @issues.each do |issue| %>
+      <% if issue.is_current %>
+        <div class="issue-box current" data-session-id="<%= @s.id %>" data-issue-id="<%= issue.id %>">
+      <% else %>
+        <div class="issue-box" data-session-id="<%= @s.id %>" data-issue-id="<%= issue.id %>">
+      <% end %>
+      <span class="votes-count"><%= issue.vote %> <%= 'vote'.pluralize(issue.vote) %></span>
+      <span class="issue-detail"><%= issue.detail %></span>
+      </div>
+    <% end %>
+  </div>
+</div>
 <div class="current-issue-container">
   <%= render 'current_issue' %>
 </div>

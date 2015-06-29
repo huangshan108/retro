@@ -2,12 +2,14 @@ body, input {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   font-size: 18px;
-  color: white;
+  color: #BDC3C7;
 }
 
 ul {
   list-style: none;
   text-align: left;
+  margin-top: 0;
+  margin-bottom: 0;
   li:before {
     content: "";
     border-color: transparent #16A085;
@@ -20,6 +22,10 @@ ul {
     top: 1em;
     position: relative;
   }
+}
+
+.disabled {
+  cursor: not-allowed;
 }
 
 .flash {
@@ -110,13 +116,21 @@ input[type="submit"] {
     font-size: 70px;
   }
 }
+.subtitle {
+  text-align: center;
+  font-size: 25px;
+  color: #FFB601;
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
 .tips {
-  .tips-label {
-    text-align: center;
-    font-size: 25px;
-  }
   width: 700px;
   margin-left: calc(50% - 340px);
-  margin-top: 70px;
+  margin-bottom: 50px;
+  ul {
+    li {
+      color: #ECF0F1;
+    }
+  }
 }
 

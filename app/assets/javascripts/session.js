@@ -20,7 +20,10 @@ $(function(){
       },
       dataType: 'JSON',
       success: function(response) {
-
+        $('#submit-vote').remove();
+        $('input[type="number"]').prop('disabled', true);
+        $('input[type="number"]').addClass('disabled');
+        $('.vote-counter').text("Vote submitted!")
       },
       error: function(response) {
         alert("Error when submitting vote");  

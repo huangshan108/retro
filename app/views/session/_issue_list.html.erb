@@ -1,11 +1,15 @@
-<div class="title">Issue List</div>
+<div class="subtitle">Issue List</div>
 <div class="issue-list">
   <% @issues.each do |issue| %>
     <div class="issue-box">
       <span><%= issue.detail %></span>
       <% if is_vote %>
         <span class="vote">
-          <input type="number" data-issue-id="<%= issue.id %>" value="0" min="0" max="5">
+          <% if voted %>
+            <input type="number" data-issue-id="<%= issue.id %>" value="0" min="0" max="5" class="disabled" disabled>
+          <% else %>
+            <input type="number" data-issue-id="<%= issue.id %>" value="0" min="0" max="5">
+          <% end %>
         </span>
       <% end %>
     </div>
