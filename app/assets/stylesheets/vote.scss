@@ -1,0 +1,12 @@
+.vote {
+  input[type="number"] {
+    float: right;
+    border: none;
+    background-color: rgba(255,255,255,0.05);
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+    line-height: 30px;
+    margin-top: 5px;
+    width: 40px;
+    padding-left: 10px;
+  }
+}

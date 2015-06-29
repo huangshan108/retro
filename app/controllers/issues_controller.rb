@@ -5,6 +5,7 @@ class IssuesController < ApplicationController
       cur_issue = Issue.find(k)
       cur_issue.update(:vote => cur_issue.vote + v.to_i)
     end
+    User.find(params[:user_id]).set_voted
     respond_to do |format|
       format.html {}
       format.json { render :json => {:data => "succeed!" } }

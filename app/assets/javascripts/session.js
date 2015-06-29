@@ -13,7 +13,11 @@ $(function(){
     $.ajax({
       url: '/issues/vote',
       type: 'POST',
-      data: {'vote': result},
+      data: {
+        'vote': result, 
+        'user_id': $('#submit-vote').data('user-id'),
+        'session_id': $('#submit-vote').data('session-id')
+      },
       dataType: 'JSON',
       success: function(response) {
 
