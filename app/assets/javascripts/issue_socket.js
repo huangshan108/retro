@@ -13,21 +13,34 @@ IssueSocket.prototype.initBinds = function() {
     console.log(resp);
     switch(resp.type) {
       case 'issue':
-        appendToList('issue', resp.detail);
-        $('#new-issue').val("");
+        issueCallback(resp);
         break;
       case 'note':
-        appendToList('note', resp.detail);
-        $('#new-note').val("");
+        noteCallback(resp);
       case 'thumb_vote':
-        $('.up-count').text(resp.thumb_up);
-        $('.down-count').text(resp.thumb_down);
-        checkCountDown(resp.up, resp.down, resp.active);
+        thumbVoteCallback(resp);
       default:
         break;
     }
   }
 };
+
+function issueCallback(resp) {
+  var issue_box = '<div class="issue-box"><span>' + resp.detail + '</span></div>';
+  $(issue_box).hide().prependTo(".issue-list").fadeIn("slow");
+  $('#new-issue').val("");
+}
+
+function noteCallback(resp) {
+  appendToList('note', resp.detail);
+  $('#new-note').val("");
+}
+
+function thumbVoteCallback(resp) {
+  $('.up-count').text(resp.thumb_up);
+  $('.down-count').text(resp.thumb_down);
+  checkCountDown(resp.up, resp.down, resp.active);
+}
 
 IssueSocket.prototype.bindNewIssue = function() {
   var _this = this;
