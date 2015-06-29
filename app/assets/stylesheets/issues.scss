@@ -1,3 +1,8 @@
-// Place all the styles related to the issues controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#new-issue-form {
+  text-align: center;
+  margin-left: 85px;
+  margin-top: 40px;
+  #new-issue {
+    width: 600px;
+  }
+}
