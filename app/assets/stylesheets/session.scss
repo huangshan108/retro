@@ -17,3 +17,12 @@
   margin-top: 80px;
   text-align: center;
 }
+
+.join-name-wrapper {
+  margin-top: 200px;
+  .name-input {
+    margin-top: 70px;
+    width: 300px;
+    margin-left: calc(50% - 190px);
+  }
+}

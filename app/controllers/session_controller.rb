@@ -54,6 +54,7 @@ class SessionController < ApplicationController
       redirect_to show_session_path(:id => params[:id], :name => params[:name])
       return
     end
+    @s = Session.find_by_id(params[:id])
   end
 
   def review

@@ -75,7 +75,7 @@ input[type="text"] {
   outline: none;
   border-radius: 3px;
   &.inline {
-    padding: 7px 67px 7px 7px;
+    padding: 7px 75px 7px 7px;
   }
 }
 
@@ -109,10 +109,10 @@ input[type="submit"] {
     color: white;
     font-size: 70px;
   }
-  .tips {
-    width: 700px;
-    margin-left: calc(50% - 340px);
-    margin-top: 70px;
-  }
+}
+.tips {
+  width: 700px;
+  margin-left: calc(50% - 340px);
+  margin-top: 70px;
 }
 

@@ -1,5 +1,17 @@
-<%= form_tag(:join_session) do %>
-  <label>Please enter your name:</label>
-  <%= text_field_tag 'name' %>
-  <%= submit_tag 'Join' %>
-<% end %>
+<div class="join-name-wrapper">
+  <div class="tips">
+    <ul>
+      <li>
+        You are joining session <%= @s.id %>. Please enter you name below to identify youself.
+      </li>
+      <li>
+        If you have joined this session before, please enter the same name you used last time so that we can sync your posts.
+      </li>
+    </ul>
+     
+  </div>
+  <%= form_tag(:join_session) do %>
+    <%= text_field_tag 'name', nil, placeholder: "Please enter your name:", class: "name-input inline" %>
+    <%= submit_tag 'Join', class: "inline" %>
+  <% end %>
+</div>
