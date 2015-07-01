@@ -2,15 +2,9 @@
   <div class="title">Welcome to Retro</div>
   <div class="tips">
     <ul>
-      <li>
-        You can join a session by enter your session id below.
-      </li>
-      <li>
-        You can also create a new session. 
-      </li>
-      <li>
-        The person who creates the session will be the holder for that Retro plan meeting.
-      </li>
+      <li>You can join a session by enter your session id below.</li>
+      <li>You can also create a new session.</li>
+      <li>The person who creates the session will be the host for that Retro plan meeting.</li>
     </ul>
   </div>
 </div>
@@ -20,8 +14,12 @@
     <%= text_field_tag 'id', nil, :placeholder => "Please enter session id:", class: "session-id inline"%>
     <%= submit_tag 'Join', class: "session-id-submit inline" %>
   <% end %>
+  <div class="or-wrapper">
+    <span>or</span>
+    <hr>
+  </div>
   <%= form_tag(:create_session, :class => "create-session-form") do %>
-    <label>or</label>
-    <%= submit_tag 'Create' %>
+    <%= text_field_tag 'name', nil, :placeholder => "Please enter your name:", class: "name inline"%>
+    <%= submit_tag 'Create', class: "create-session-submit inline" %>
   <% end %>
 </div>

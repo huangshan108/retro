@@ -1,21 +1,40 @@
-.session-id {
-  width: 300px;
-}
-.join-session-form {
-  display: inline-block;
-}
-.create-session-form {
-  display: inline-block;
-  position: relative;
-  left: -70px;
-  label {
-    margin-right: 5px; 
-  }
-}
+$pointThreeOpacityWhite: #6d7178;
 
 .session-join-create-wrapper {
-  margin-top: 80px;
-  text-align: center;
+  margin-top: 60px;
+  .name,
+  .session-id {
+    width: 300px;
+    margin-left: calc(50% - 190px);
+  }
+  .join-session-form {
+  }
+  .create-session-form {
+  }
+  .or-wrapper {
+    span {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      background-color: $pointThreeOpacityWhite;
+      line-height: 28px;
+      border-radius: 15px;
+      font-size: 15px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      margin-left: calc(50% - 15px);
+    }
+    hr {
+      margin: 0;
+      border: 1px solid $pointThreeOpacityWhite;
+      width: 200px;
+      margin-left: calc(50% - 100px);
+      position: relative;
+      top: -37px;
+      z-index: -5;
+    }
+  }
 }
 
 .join-name-wrapper {

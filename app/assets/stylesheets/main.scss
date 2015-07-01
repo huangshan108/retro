@@ -5,6 +5,11 @@ body, input {
   color: #BDC3C7;
 }
 
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
 .app-container {
   margin-bottom: 100px;
 }
@@ -113,11 +118,12 @@ input[type="submit"] {
 }
 
 .welcome-wrapper {
-  margin-top: 150px;
+  margin-top: 120px;
   text-align: center;
   .title {
     color: white;
     font-size: 70px;
+    margin-bottom: 30px;
   }
 }
 .subtitle {
