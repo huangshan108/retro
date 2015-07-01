@@ -4,8 +4,13 @@ class SessionController < ApplicationController
   end
 
   def create
+    if params[:name].empty?
+      flash[:error] = "Name cannot be empty!"
+      return redirect_to :back
+    end
     new_session = Session.create(:mode => :edit)
-    redirect_to show_session_path(new_session)
+    @user = User.create(:name => params[:name], :session_id => new_session.id, :is_host => true)
+    redirect_to show_session_path(:id => new_session.id, :name => @user.name)
   end
 
   def show

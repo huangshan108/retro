@@ -38,10 +38,12 @@ $pointThreeOpacityWhite: #6d7178;
 }
 
 .join-name-wrapper {
-  margin-top: 200px;
-  .name-input {
-    margin-top: 70px;
-    width: 300px;
-    margin-left: calc(50% - 190px);
+  margin-top: 100px;
+  .join-session-form {
+    margin-top: 50px;
+    .name-input {
+      width: 300px;
+      margin-left: calc(50% - 190px);
+    }
   }
 }

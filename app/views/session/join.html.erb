@@ -7,7 +7,7 @@
     </ul>
      
   </div>
-  <%= form_tag(:join_session) do %>
+  <%= form_tag :join_session, class: "join-session-form" do %>
     <%= text_field_tag 'name', nil, placeholder: "Please enter your name:", class: "name-input inline" %>
     <%= submit_tag 'Join', class: "inline" %>
   <% end %>

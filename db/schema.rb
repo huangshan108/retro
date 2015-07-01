@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150629033943) do
+ActiveRecord::Schema.define(version: 20150701033821) do
 
   create_table "issues", force: :cascade do |t|
     t.text     "detail"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150629033943) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "voted",      default: false
+    t.boolean  "is_host",    default: false
   end
 
 end
