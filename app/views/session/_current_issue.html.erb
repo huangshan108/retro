@@ -29,15 +29,24 @@
         </div>
       </div>
     </div>
-    <div class="thumb">
-      <div class="thumb-wrapper up" data-issue-id="<%= @current_issue.id %>">
-        <div class="up-count"><%= @current_issue.thumb_up %></div>
-        <i class="fa fa-thumbs-o-up"></i>
-      </div>
-      <div class="thumb-wrapper down" data-issue-id="<%= @current_issue.id %>">
-        <div class="down-count"><%= @current_issue.thumb_down %></div>
-        <i class="fa fa-thumbs-o-down"></i>
-      </div>
+    <div class="thumb-table-wrapper" data-issue-id="<%= @current_issue.id %>">
+      <table>
+        <tr>
+          <th></th>
+          <th><i class="fa fa-thumbs-o-up"></i></th>
+          <th><i class="fa fa-thumbs-o-down"></i></th>
+        </tr>
+        <tr>
+          <td>Count</td>
+          <td class="up-count"><%= @current_issue.thumb_up %></td>
+          <td class="down-count"><%= @current_issue.thumb_down %></td>
+        </tr>
+        <tr>
+          <td>Percentage</td>
+          <td><%= (@current_issue.thumb_up.to_f / user_count).round(2) * 100 %>%</td>
+          <td><%= (@current_issue.thumb_down.to_f / user_count).round(2) * 100 %>%</td>
+        </tr>
+      </table>
     </div>
     <%= render 'session/add_note.html.erb', :current_issue => @current_issue %>
   <% else %>
