@@ -16,45 +16,53 @@
         </div>
       </div>
     </div>
-    <div class="thumb-graph-wrapper">
-      <hr class="half-divider">
-      <div class="up-graph-wrapper">
-        <div class="up-growth">
-          
+    <div class="row">
+      <div class="left-half">
+        <div class="thumb-table-wrapper" data-issue-id="<%= @current_issue.id %>" data-user-count="<%= user_count %>">
+          <table>
+            <caption>Thumb Vote Statistics</caption>
+            <tr>
+              <th></th>
+              <th>Thumb Up</th>
+              <th>Thumb Down</th>
+            </tr>
+            <tr>
+              <td>Count</td>
+              <td class="up-count"><%= @current_issue.thumb_up %></td>
+              <td class="down-count"><%= @current_issue.thumb_down %></td>
+            </tr>
+            <tr>
+              <td>Percentage</td>
+              <td class="up-percentage"><%= (@current_issue.thumb_up.to_f / user_count).round(2) * 100 %>%</td>
+              <td class="down-percentage"><%= (@current_issue.thumb_down.to_f / user_count).round(2) * 100 %>%</td>
+            </tr>
+            <tr>
+              <td>All Users</td>
+              <td colspan="2"><%= user_count %></td>
+            </tr>
+          </table>
         </div>
       </div>
-      <div class="down-graph-wrapper">
-        <div class="down-growth">
-          
+      <div class="right-half">
+        <div class="thumb-graph-wrapper">
+          <hr class="half-divider"><span class="half-label">50%</span>
+          <div class="up-graph-wrapper">
+            <div class="up-growth">
+              
+            </div>
+          </div>
+          <div class="down-graph-wrapper">
+            <div class="down-growth">
+              
+            </div>
+          </div>
+          <div class="up-label"><i class="fa fa-thumbs-o-up"></i></div>
+          <div class="down-label"><i class="fa fa-thumbs-o-down"></i></div>
         </div>
       </div>
-      <div class="up-label"><i class="fa fa-thumbs-o-up"></i></div>
-      <div class="down-label"><i class="fa fa-thumbs-o-down"></i></div>
     </div>
-    <div class="thumb-table-wrapper" data-issue-id="<%= @current_issue.id %>" data-user-count="<%= user_count %>">
-      <table>
-        <caption>Thumb Vote Statistics</caption>
-        <tr>
-          <th></th>
-          <th>Thumb Up</th>
-          <th>Thumb Down</th>
-        </tr>
-        <tr>
-          <td>Count</td>
-          <td class="up-count"><%= @current_issue.thumb_up %></td>
-          <td class="down-count"><%= @current_issue.thumb_down %></td>
-        </tr>
-        <tr>
-          <td>Percentage</td>
-          <td class="up-percentage"><%= (@current_issue.thumb_up.to_f / user_count).round(2) * 100 %>%</td>
-          <td class="down-percentage"><%= (@current_issue.thumb_down.to_f / user_count).round(2) * 100 %>%</td>
-        </tr>
-        <tr>
-          <td>All Users</td>
-          <td colspan="2"><%= user_count %></td>
-        </tr>
-      </table>
-    </div>
+
+
     <%= render 'session/add_note.html.erb', :current_issue => @current_issue %>
   <% else %>
     <div class="issue-list-wrapper">

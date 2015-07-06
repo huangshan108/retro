@@ -14,6 +14,11 @@
     border-top: 1px dashed white;
     z-index: 10;
   }
+  .half-label {
+    position: relative;
+    bottom: -90px;
+    right: 100px;
+  }
   .up-graph-wrapper {
     -moz-transform: scaleY(-1);
     -o-transform: scaleY(-1);
@@ -50,12 +55,12 @@
     position: relative;
     display: inline-block;
     bottom: -205px;
-    left: -35px;
+    left: -70px;
   }
   .down-label {
     position: relative;
     bottom: -205px;
-    left: 100px;
+    left: 60px;
     display: inline-block;
   }
 }
@@ -65,7 +70,6 @@
     border: 1px solid rgba(255,255,255,1);
     border-collapse: collapse;
     width: 400px;
-    margin-left: calc(50% - 200px);
     margin-top: 50px;
     font-weight: 300;
     caption {
@@ -75,7 +79,19 @@
   th, td {
     padding: 5px;
     text-align: center;
-    width: 100px;
+    width: 60px;
     font-weight: 300;
   }
+}
+.row {
+  margin-bottom: 50px;
+  .left-half {
+    float: left;
+    margin-left: calc(50% - 350px);
+  }
+  .right-half {
+    display: inline-block;
+    margin-left: 100px;
+    margin-top: 15px;
+  }  
 }
