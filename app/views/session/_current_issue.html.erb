@@ -28,13 +28,16 @@
           
         </div>
       </div>
+      <div class="up-label"><i class="fa fa-thumbs-o-up"></i></div>
+      <div class="down-label"><i class="fa fa-thumbs-o-down"></i></div>
     </div>
-    <div class="thumb-table-wrapper" data-issue-id="<%= @current_issue.id %>">
+    <div class="thumb-table-wrapper" data-issue-id="<%= @current_issue.id %>" data-user-count="<%= user_count %>">
       <table>
+        <caption>Thumb Vote Statistics</caption>
         <tr>
           <th></th>
-          <th><i class="fa fa-thumbs-o-up"></i></th>
-          <th><i class="fa fa-thumbs-o-down"></i></th>
+          <th>Thumb Up</th>
+          <th>Thumb Down</th>
         </tr>
         <tr>
           <td>Count</td>
@@ -43,8 +46,12 @@
         </tr>
         <tr>
           <td>Percentage</td>
-          <td><%= (@current_issue.thumb_up.to_f / user_count).round(2) * 100 %>%</td>
-          <td><%= (@current_issue.thumb_down.to_f / user_count).round(2) * 100 %>%</td>
+          <td class="up-percentage"><%= (@current_issue.thumb_up.to_f / user_count).round(2) * 100 %>%</td>
+          <td class="down-percentage"><%= (@current_issue.thumb_down.to_f / user_count).round(2) * 100 %>%</td>
+        </tr>
+        <tr>
+          <td>All Users</td>
+          <td colspan="2"><%= user_count %></td>
         </tr>
       </table>
     </div>

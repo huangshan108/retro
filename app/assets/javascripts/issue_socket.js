@@ -19,6 +19,7 @@ IssueSocket.prototype.initBinds = function() {
         noteCallback(resp);
       case 'thumb_vote':
         thumbVoteCallback(resp);
+        checkCountDown(resp.up, resp.down, resp.active);        
       default:
         break;
     }
@@ -40,7 +41,22 @@ function noteCallback(resp) {
 function thumbVoteCallback(resp) {
   $('.up-count').text(resp.thumb_up);
   $('.down-count').text(resp.thumb_down);
-  checkCountDown(resp.up, resp.down, resp.active);
+  $('.up-percentage').text(computeThumbVotePercentage(resp.thumb_up));
+  $('.down-percentage').text(computeThumbVotePercentage(resp.thumb_down));
+  $('.up-growth').height(computeThumbVoteHeight(resp.thumb_up));
+  $('.down-growth').height(computeThumbVoteHeight(resp.thumb_down));
+}
+
+function computeThumbVotePercentage(num) {
+  var all_users = $('.thumb-table-wrapper').data('user-count');
+  var perc = parseFloat(parseInt(num) / parseInt(all_users));
+  return (perc * 100).toFixed(1) + "%";
+}
+
+function computeThumbVoteHeight(num) {
+  var all_users = $('.thumb-table-wrapper').data('user-count');
+  var max_height = $('.up-graph-wrapper').height();
+  return parseInt(num) / parseInt(all_users) * max_height;
 }
 
 IssueSocket.prototype.bindNewIssue = function() {
