@@ -1,13 +1,6 @@
 <div class="stage">
   <%= link_to 'Show Me Report', report_stage_path(:session_id => @s.id, :name => @user.name), method: :post %>
 </div>
-<div class="count-down">
-  You have <span id="sec-left"></span> seconds left.
-</div>
-<div class="next-issue-wrapper">
-  <button id="next-issue">Next Issue</button>
-</div>
-
 <div class="issue-list-wrapper">
   <div class="subtitle">Issue List</div>
   <div class="issue-list">

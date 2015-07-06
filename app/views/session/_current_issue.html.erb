@@ -61,7 +61,13 @@
         </div>
       </div>
     </div>
-
+    <div class="count-down">
+      <div class="count-down-label">Time Left on Current Issue</div>
+      <div id="sec-left" class="green"></div>
+    </div>
+    <div class="next-issue-wrapper">
+      <button id="next-issue">Next Issue</button>
+    </div>
 
     <%= render 'session/add_note.html.erb', :current_issue => @current_issue %>
   <% else %>
@@ -82,7 +88,11 @@
       dataType: 'JSON',
       data: { 'cur_issue_id': <%= @current_issue.id %> },
       success: function(response) {
-        count_down(15 - parseInt(response.data));
+        var sec_left = 60 - parseInt(response.data);
+        if (sec_left < 10) {
+          $('#sec-left').removeClass('green').addClass('red');
+        };
+        count_down(sec_left);      
       },
       error: function(response) {
 

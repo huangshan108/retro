@@ -1,0 +1,18 @@
+.count-down {
+  text-align: center;
+  .count-down-label {
+    font-size: 20px;
+    color: #F1C40F;
+    margin-bottom: 20px;
+  }
+  #sec-left {
+    font-family: 'Digital';
+    font-size: 200px;
+    &.red {
+      color: #E74C3C;
+    }
+    &.green {
+      color: #2ECC71;
+    }
+  }
+}
