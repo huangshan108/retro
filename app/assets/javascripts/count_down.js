@@ -1,5 +1,9 @@
 function count_down(init) {
   var $sec = $('#sec-left');
+  if (init <= 0) {
+    $sec.text(0);
+    return;    
+  };
   $sec.text(init);
   var inter = setInterval(function () {
     init -= 1;
