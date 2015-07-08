@@ -21,7 +21,6 @@ IssueSocket.prototype.initBinds = function() {
         break;
       case 'thumb_vote':
         _this.thumbVoteCallback(resp);
-        // checkCountDown(resp.up, resp.down);
         break;
       case 'reset_thumb_vote':
         count_down.extraTime(resp.sec_elapsed);

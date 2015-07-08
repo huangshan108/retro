@@ -15,18 +15,16 @@ CountDown.prototype.count_down = function(init) {
   var inter = setInterval(function () {
     _this.init -= 1;
     $sec.text(_this.init);
-    if (_this.init == 10) {
+    if (_this.init <= 10) {
       $sec.removeClass('green').addClass('red');
-    };
+    } else {
+      $sec.removeClass('red').addClass('green');
+    }
     if (_this.init == 0) {
       console.log('cleared');
       clearInterval(inter);
     };
   }, 1000);
-};
-
-CountDown.prototype.checkCountDown = function(up, down) {
-
 };
 
 CountDown.prototype.extraTime = function(sec_elapsed) {
