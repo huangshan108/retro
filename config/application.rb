@@ -25,5 +25,6 @@ module Retro
     config.middleware.use IssueSocket
 
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    config.serve_static_assets = true
   end
 end
