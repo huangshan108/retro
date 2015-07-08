@@ -8,6 +8,7 @@ IssueSocket.prototype.initBinds = function() {
   _this.bindNewIssue();
   _this.bindNewNote();
   _this.bindVote();
+  _this.bindPrevNextButton();
   this.socket.onmessage = function(e) {
     var resp = unpack(e.data);
     console.log(resp);
@@ -19,7 +20,9 @@ IssueSocket.prototype.initBinds = function() {
         noteCallback(resp);
       case 'thumb_vote':
         thumbVoteCallback(resp);
-        checkCountDown(resp.up, resp.down, resp.active);        
+        checkCountDown(resp.up, resp.down, resp.active);
+      case 'refresh':
+        location.reload();
       default:
         break;
     }
@@ -82,7 +85,7 @@ IssueSocket.prototype.bindVote = function() {
   $('body').on('keypress', 'input', function(e) {
     e.stopPropagation();
   });
-  
+
   $('body').on('keypress', function(e) {
     e.preventDefault();
     var issue_id = $('.current-issue').data('issue-id');
@@ -98,21 +101,29 @@ IssueSocket.prototype.bindVote = function() {
       _this.sendVote(req);
     };
   });
+};
 
-
+IssueSocket.prototype.bindPrevNextButton = function() {
+  var _this = this;
+  $('body').on('click', '#prev-issue', function(e) {
+    _this.sendPrev();
+  });
+  $('body').on('click', '#next-issue', function(e) {
+    _this.sendNext();
+  });
 };
 
 IssueSocket.prototype.sendIssue = function() {
   var $new_issue = $('#new-issue');
   var detail = $new_issue.val();
   var session_id = $new_issue.data('session-id');
-  var user_id = $new_issue.data('user-id');  
+  var user_id = $new_issue.data('user-id');
   var req = {
     'type': 'new_issue',
     'detail': detail,
     'session_id': session_id,
     'user_id': user_id
-  }
+  };
   console.log('req', req);
   this.send(req);
 };
@@ -125,7 +136,7 @@ IssueSocket.prototype.sendNote = function() {
     'type': 'new_note',
     'detail': detail,
     'issue_id': issue_id
-  }
+  };
   console.log('req', req);
   this.send(req);
 };
@@ -136,4 +147,30 @@ IssueSocket.prototype.sendVote = function(req) {
 
 IssueSocket.prototype.send = function(req) {
   this.socket.send(pack(req));
+};
+
+IssueSocket.prototype.sendPrev = function(req) {
+  var $current = $('.current');
+  var cur_issue_id = $current.data('issue-id');
+  var prev_issue_id = $current.prev().data('issue-id');
+  var req = {
+    'type': 'prev_issue',
+    'cur_issue_id': cur_issue_id,
+    'prev_issue_id': prev_issue_id
+  };
+  console.log('req', req);
+  this.send(req);
+};
+
+IssueSocket.prototype.sendNext = function(req) {
+  var $current = $('.current');
+  var cur_issue_id = $current.data('issue-id');
+  var next_issue_id = $current.next().data('issue-id');
+  var req = {
+    'type': 'next_issue',
+    'cur_issue_id': cur_issue_id,
+    'next_issue_id': next_issue_id
+  };
+  console.log('req', req);
+  this.send(req);
 };

@@ -1,8 +1,8 @@
 module Handler
   def self.create_new_issue req
     issue = Issue.create(
-      :detail => req['detail'], 
-      :session_id => req['session_id'], 
+      :detail => req['detail'],
+      :session_id => req['session_id'],
       :user_id => req['user_id'],
       :is_current => false,
       :vote => 0,
@@ -15,7 +15,7 @@ module Handler
 
   def self.create_new_note req
     note = Note.create(
-      :detail => req['detail'], 
+      :detail => req['detail'],
       :issue_id => req['issue_id']
     ).as_json
     note['type'] = 'note'
@@ -36,4 +36,29 @@ module Handler
     resp['type'] = 'thumb_vote'
     resp
   end
+
+  def self.show_prev_issue req
+    resp = {}
+    @prev_issue = Issue.find_by_id(req['prev_issue_id'])
+    if @prev_issue
+      @prev_issue.update(:is_current => true)
+      @prev_issue.init_count_down
+      Issue.find_by_id(req['cur_issue_id']).update(:is_current => false)
+    end
+    resp['type'] = 'refresh'
+    resp
+  end
+
+  def self.show_next_issue req
+    resp = {}
+    @next_issue = Issue.find_by_id(req['next_issue_id'])
+    if @next_issue
+      @next_issue.update(:is_current => true)
+      @next_issue.init_count_down
+      Issue.find_by_id(req['cur_issue_id']).update(:is_current => false)
+    end
+    resp['type'] = 'refresh'
+    resp
+  end
+
 end

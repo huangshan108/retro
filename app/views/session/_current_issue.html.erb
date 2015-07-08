@@ -48,12 +48,12 @@
           <hr class="half-divider"><span class="half-label">50%</span>
           <div class="up-graph-wrapper">
             <div class="up-growth">
-              
+
             </div>
           </div>
           <div class="down-graph-wrapper">
             <div class="down-growth">
-              
+
             </div>
           </div>
           <div class="up-label"><i class="fa fa-thumbs-o-up"></i></div>
@@ -67,6 +67,7 @@
     </div>
     <div class="next-issue-wrapper">
       <button id="next-issue">Next Issue</button>
+      <button id="prev-issue">Prev Issue</button>
     </div>
 
     <%= render 'session/add_note.html.erb', :current_issue => @current_issue %>
@@ -92,7 +93,7 @@
         if (sec_left < 10) {
           $('#sec-left').removeClass('green').addClass('red');
         };
-        count_down(sec_left);      
+        count_down(sec_left);
       },
       error: function(response) {
 

@@ -38,7 +38,7 @@ class SessionController < ApplicationController
       when "review"
         @issues = @issues.order(vote: :desc)
         if @issues.where(:is_current => true).empty?
-          @issues.first.update(:is_current => true)          
+          @issues.first.update(:is_current => true)
         end
         @current_issue = @issues.where(:is_current => true).first
         render 'review'
