@@ -5,6 +5,6 @@ $(function() {
     var obj = {};
     obj['thumb_up'] = $('.up-count').text();
     obj['thumb_down'] = $('.down-count').text();
-    thumbVoteCallback(obj);
+    issue_socket.thumbVoteCallback(obj);
   };
 });

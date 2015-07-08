@@ -1,6 +1,6 @@
 class SessionController < ApplicationController
   def index
-    
+
   end
 
   def create
@@ -63,7 +63,7 @@ class SessionController < ApplicationController
   end
 
   def review
-    
+
   end
 
   def edit_stage

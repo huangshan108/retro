@@ -7,6 +7,10 @@ class Issue < ActiveRecord::Base
     self.update(:count_down_init_timestamp => Time.now)
   end
 
+  def extra_time
+    self.increment!(:count_down_init_timestamp, 30)
+  end
+
   def get_sec_elapsed
     if self.is_current && self.count_down_init_timestamp == nil
       init_count_down

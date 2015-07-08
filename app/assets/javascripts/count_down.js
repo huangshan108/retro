@@ -1,23 +1,39 @@
-function count_down(init) {
+var CountDown = function(init) {
+  this.init = init;
+  this.count_down(this.init);
+};
+
+
+CountDown.prototype.count_down = function(init) {
+  var _this = this;
   var $sec = $('#sec-left');
-  if (init <= 0) {
+  if (_this.init <= 0) {
     $sec.text(0);
-    return;    
+    return;
   };
-  $sec.text(init);
+  $sec.text(_this.init);
   var inter = setInterval(function () {
-    init -= 1;
-    $sec.text(init);
-    if (init == 10) {
+    _this.init -= 1;
+    $sec.text(_this.init);
+    if (_this.init == 10) {
       $sec.removeClass('green').addClass('red');
     };
-    if (init == 0) {
+    if (_this.init == 0) {
       console.log('cleared');
       clearInterval(inter);
-    };    
+    };
   }, 1000);
 };
 
-function checkCountDown(up, down, active) {
-  
+CountDown.prototype.checkCountDown = function(up, down) {
+
+};
+
+CountDown.prototype.extraTime = function(sec_elapsed) {
+  var _this = this;
+  var sec_left = 60 - parseInt(sec_elapsed);
+  if (sec_left < 10) {
+    $('#sec-left').removeClass('green').addClass('red');
+  };
+  _this.init = sec_left;
 };

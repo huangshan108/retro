@@ -32,7 +32,6 @@ module Handler
     resp = {}
     resp['thumb_up'] = issue.thumb_up
     resp['thumb_down'] = issue.thumb_down
-    resp['active'] = 2
     resp['type'] = 'thumb_vote'
     resp
   end
@@ -58,6 +57,19 @@ module Handler
       Issue.find_by_id(req['cur_issue_id']).update(:is_current => false)
     end
     resp['type'] = 'refresh'
+    resp
+  end
+
+  def self.reset_thumb_vote req
+    issue = Issue.find(req['issue_id'])
+    issue.update(:thumb_up => 0)
+    issue.update(:thumb_down => 0)
+    issue.extra_time
+    resp = {}
+    resp['thumb_up'] = issue.thumb_up
+    resp['thumb_down'] = issue.thumb_down
+    resp['type'] = 'reset_thumb_vote'
+    resp['sec_elapsed'] = issue.get_sec_elapsed
     resp
   end
 

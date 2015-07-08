@@ -82,6 +82,7 @@
   <% end %>
 </div>
 <script type="text/javascript">
+  var count_down;
   $(function() {
     $.ajax({
       url: '/issues/get-sec-elapsed',
@@ -93,7 +94,7 @@
         if (sec_left < 10) {
           $('#sec-left').removeClass('green').addClass('red');
         };
-        count_down(sec_left);
+        count_down = new CountDown(sec_left);
       },
       error: function(response) {
 

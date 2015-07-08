@@ -51,6 +51,8 @@ def spawn_socket
       resp = Handler.show_prev_issue req
     when 'next_issue'
       resp = Handler.show_next_issue req
+    when 'reset_thumb_vote'
+      resp = Handler.reset_thumb_vote req
     end
     @clients.reject{ |client| !same_session?(client, socket) }.each do |client|
       client.send resp.to_json

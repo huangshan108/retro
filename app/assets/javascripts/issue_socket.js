@@ -20,13 +20,18 @@ IssueSocket.prototype.initBinds = function() {
         noteCallback(resp);
         break;
       case 'thumb_vote':
-        thumbVoteCallback(resp);
-        checkCountDown(resp.up, resp.down, resp.active);
+        _this.thumbVoteCallback(resp);
+        // checkCountDown(resp.up, resp.down);
+        break;
+      case 'reset_thumb_vote':
+        count_down.extraTime(resp.sec_elapsed);
+        _this.thumbVoteCallback(resp);
         break;
       case 'refresh':
         location.reload();
         break;
       default:
+        // location.reload();
         break;
     }
   }
@@ -44,7 +49,13 @@ function noteCallback(resp) {
   $('#new-note').val("");
 }
 
-function thumbVoteCallback(resp) {
+IssueSocket.prototype.thumbVoteCallback = function(resp) {
+  var _this = this;
+  var all_users = $('.thumb-table-wrapper').data('user-count');
+  if (parseInt(resp.thumb_up) != 0 && parseInt(resp.thumb_up) >= parseInt(all_users) / 2) {
+    _this.resetThumbVote();
+    return;
+  };
   $('.up-count').text(resp.thumb_up);
   $('.down-count').text(resp.thumb_down);
   $('.up-percentage').text(computeThumbVotePercentage(resp.thumb_up));
@@ -174,6 +185,16 @@ IssueSocket.prototype.sendNext = function(req) {
     'cur_issue_id': cur_issue_id,
     'next_issue_id': next_issue_id
   };
+  console.log('req', req);
+  this.send(req);
+};
+
+IssueSocket.prototype.resetThumbVote = function() {
+  var issue_id = $('.current-issue').data('issue-id');
+  var req = {
+    'type': 'reset_thumb_vote',
+    'issue_id': issue_id
+  }
   console.log('req', req);
   this.send(req);
 };
