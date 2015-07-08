@@ -18,11 +18,14 @@ IssueSocket.prototype.initBinds = function() {
         break;
       case 'note':
         noteCallback(resp);
+        break;
       case 'thumb_vote':
         thumbVoteCallback(resp);
         checkCountDown(resp.up, resp.down, resp.active);
+        break;
       case 'refresh':
         location.reload();
+        break;
       default:
         break;
     }
