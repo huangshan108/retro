@@ -26,5 +26,6 @@ module Retro
 
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.serve_static_assets = true
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
   end
 end
