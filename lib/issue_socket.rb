@@ -33,6 +33,10 @@ def spawn_socket
   socket.on :open do
     socket.send resp.to_json
   end
+  socket.on :close do
+    @clients.delete(socket)
+    socket = nil
+  end
   socket.on :message do |event|
     req = JSON.parse(event.data)
     resp = {}
