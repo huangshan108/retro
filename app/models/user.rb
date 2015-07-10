@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   def voted?
     self.voted == true
   end
+
+  def is_host?
+    self.is_host == true
+  end
 end

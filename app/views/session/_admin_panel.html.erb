@@ -1,19 +1,21 @@
-<div class="control-panel">
-  <div class="title">
-    Control Panel
-  </div>
-  <div class="stages" data-session-id="<%= session_id %>">
-    <div class="sub-title">Toggle Stages</div>
-    <button class="stage-link" data-stage="edit">Edit</button>
-    <button class="stage-link" data-stage="vote">Vote</button>
-    <button class="stage-link" data-stage="review">Review</button>
-    <button class="stage-link" data-stage="report">Report</button>
-  </div>
-  <% if review %>
-    <div class="next-issue-wrapper">
-      <div class="sub-title">Toggle Issues</div>
-      <button id="next-issue">Next Issue</button>
-      <button id="prev-issue">Prev Issue</button>
+<% if current_user.is_host? %>
+  <div class="control-panel">
+    <div class="title">
+      Control Panel
     </div>
-  <% end %>
-</div>
+    <div class="stages" data-session-id="<%= session_id %>">
+      <div class="sub-title">Toggle Stages</div>
+      <button class="stage-link" data-stage="edit">Edit</button>
+      <button class="stage-link" data-stage="vote">Vote</button>
+      <button class="stage-link" data-stage="review">Review</button>
+      <button class="stage-link" data-stage="report">Report</button>
+    </div>
+    <% if review %>
+      <div class="next-issue-wrapper">
+        <div class="sub-title">Toggle Issues</div>
+        <button id="prev-issue">Prev Issue</button>
+        <button id="next-issue">Next Issue</button>
+      </div>
+    <% end %>
+  </div>
+<% end %>
