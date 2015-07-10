@@ -1,21 +1,24 @@
 <% if session_id and user_name %>
   <%= render 'admin_panel', session_id: session_id, review: false %>
 <% end %>
-<div class="report-title">Retro Report</div>
-<div class="report-body">
-  <% @issues.each do |issue| %>
-    <p class="issue-detail">
-      <%= issue.detail %>
-    </p>
-    <% if issue.notes.any? %> 
-      <div class="note-header">
-        Notes:
-      </div>
-      <ul>
-        <% issue.notes.each do |note| %>
-          <li><%= note.detail %></li>
+<div class="report">
+  <div class="subtitle">Retro Report</div>
+  <div class="issue-list-wrapper">
+    <div class="issue-list">
+      <% @issues.each do |issue| %>
+        <div class="issue-box">
+          <span><%= issue.detail %></span>
+        </div>
+        <% if issue.notes.any? %>
+        <div class="issue-notes">
+          <ul>
+            <% issue.notes.each do |note| %>
+              <li><%= note.detail %></li>
+            <% end %>
+          </ul>
+        </div>
         <% end %>
-      </ul>
-    <% end %>
-  <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
