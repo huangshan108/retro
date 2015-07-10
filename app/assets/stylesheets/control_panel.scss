@@ -7,8 +7,24 @@
   border: 4px solid #f4d313;
   border-radius: 4px;
   padding: 10px;
+  z-index: 999;
+  text-align: center;
+  .title {
+    margin-top: -10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: 10px;
+    background-color: #f4d313;
+    padding: 5px;
+  }
   .stage-link {
-    text-decoration: underline;
     cursor: pointer;
+  }
+  .sub-title {
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .stages {
+    margin-bottom: 10px;
   }
 }
