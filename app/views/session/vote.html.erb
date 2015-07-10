@@ -1,3 +1,6 @@
+<% if session_id and user_name %>
+  <%= render 'admin_panel', session_id: session_id, review: false %>
+<% end %>
 <div class="tips">
   <div class="subtitle">Tips for voting issues</div>
   <ul>
@@ -7,12 +10,10 @@
     <li>You can't submit your vote if you have negative votes left.</li>
   </ul>
 </div>
-<div class="stage">
-  <%= link_to 'Let\'s Review', review_stage_path(:session_id => @s.id, :name => @user.name), method: :post %>
-</div>
+
 <div class="vote-counter">
 <% if @user.voted? %>
-  Vote submitted!  
+  Vote submitted!
 <% else %>
   You have <span>5</span> vote(s) left.
 <% end %>

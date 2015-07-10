@@ -73,4 +73,11 @@ module Handler
     resp
   end
 
+  def self.change_stage req
+    Session.find(req['session_id']).change_stage(req['stage'])
+    resp = {}
+    resp['type'] = 'refresh'
+    resp
+  end
+
 end

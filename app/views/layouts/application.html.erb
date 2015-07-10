@@ -11,7 +11,7 @@
 <% if flash[:notice] %>
  <div class="flash notice"><%= flash[:notice] %></div>
 <% elsif flash[:error] %>
-	<div class="flash error"><%= flash[:error] %></div>
+  <div class="flash error"><%= flash[:error] %></div>
 <% end %>
 <script type="text/javascript">
   $(function(){
@@ -20,6 +20,7 @@
 </script>
 <div class="backgroud-overlay"></div>
 <div class="app-container">
+
   <%= yield %>
 </div>
 

@@ -1,6 +1,6 @@
-<div class="stage">
-  <%= link_to 'Let\'s Vote', vote_stage_path(:session_id => @s.id, :name => @user.name), method: :post %>
-</div>
+<% if session_id and user_name %>
+  <%= render 'admin_panel', session_id: session_id, review: false %>
+<% end %>
 <div class="tips">
   <div class="subtitle">Tips for creating new issue</div>
   <ul>

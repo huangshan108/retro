@@ -1,0 +1,20 @@
+<div class="control-panel">
+  <div class="title">
+    Control Panel
+  </div>
+  <div class="stages" data-session-id="<%= session_id %>">
+    <div class="sub-title">
+      Stages
+    </div>
+    <div class="stage-link" data-stage="edit">Edit</div>
+    <div class="stage-link" data-stage="vote">Vote</div>
+    <div class="stage-link" data-stage="review">Review</div>
+    <div class="stage-link" data-stage="report">Report</div>
+  </div>
+  <% if review %>
+    <div class="next-issue-wrapper">
+      <button id="next-issue">Next Issue</button>
+      <button id="prev-issue">Prev Issue</button>
+    </div>
+  <% end %>
+</div>

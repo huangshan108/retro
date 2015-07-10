@@ -1,6 +1,6 @@
-<div class="stage">
-  <%= link_to 'Back to Review', review_stage_path(:session_id => @s.id, :name => @user.name), method: :post %>
-</div>
+<% if session_id and user_name %>
+  <%= render 'admin_panel', session_id: session_id, review: false %>
+<% end %>
 <div class="report-title">Retro Report</div>
 <div class="report-body">
   <% @issues.each do |issue| %>

@@ -1,6 +1,6 @@
-<div class="stage">
-  <%= link_to 'Show Me Report', report_stage_path(:session_id => @s.id, :name => @user.name), method: :post %>
-</div>
+<% if session_id and user_name %>
+  <%= render 'admin_panel', session_id: session_id, review: true %>
+<% end %>
 <div class="issue-list-wrapper">
   <div class="subtitle">Issue List</div>
   <div class="issue-list">

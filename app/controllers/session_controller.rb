@@ -65,25 +65,4 @@ class SessionController < ApplicationController
   def review
 
   end
-
-  def edit_stage
-    change_stage('edit')
-  end
-
-  def vote_stage
-    change_stage('vote')
-  end
-
-  def review_stage
-    change_stage('review')
-  end
-
-  def report_stage
-    change_stage('report')
-  end
-
-  def change_stage(stage)
-    Session.find(params[:session_id]).update(:mode => stage)
-    redirect_to show_session_path(:id => params[:session_id], :name => params[:name])
-  end
 end

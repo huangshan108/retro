@@ -9,6 +9,7 @@ IssueSocket.prototype.initBinds = function() {
   _this.bindNewNote();
   _this.bindVote();
   _this.bindPrevNextButton();
+  _this.bindChangeStage();
   this.socket.onmessage = function(e) {
     var resp = unpack(e.data);
     console.log(resp);
@@ -125,6 +126,23 @@ IssueSocket.prototype.bindPrevNextButton = function() {
     _this.sendNext();
   });
 };
+
+IssueSocket.prototype.bindChangeStage = function() {
+  var _this = this;
+  $('body').on('click', '.stage-link', function(e) {
+    _this.sendChangeStage($(e.currentTarget).data('stage'));
+  });
+}
+
+IssueSocket.prototype.sendChangeStage = function(stage) {
+  var req = {
+    'type': 'change_stage',
+    'session_id': $('.stages').data('session-id'),
+    'stage': stage
+  }
+  console.log('req', req);
+  this.send(req);
+}
 
 IssueSocket.prototype.sendIssue = function() {
   var $new_issue = $('#new-issue');
