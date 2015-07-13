@@ -14,5 +14,5 @@ function flash(message, type) {
   $('.flash').remove();
   var flash_html = '<div class="flash '+ type +'">'+ message +'</div>';
   $('body').prepend(flash_html);
-  $('.flash').fadeOut(3000);
+  $('.flash').delay(1000).fadeOut(300);
 }

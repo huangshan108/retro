@@ -45,17 +45,21 @@ ul {
 }
 
 .flash {
+  z-index: 99999;
   width: 400px;
   margin-left: calc(50% - 200px);
   text-align: center;
   position: fixed;
   top: 40px;
+  color: black;
   border: 1px solid white;
+  background-color: white;
   padding: 5px;
   border-radius: 5px;
   &.error {
-    color: #E74C3C;
+    color: white;
     border-color: #E74C3C;
+    background-color: #E74C3C;
   }
 }
 
