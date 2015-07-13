@@ -23,16 +23,22 @@ module Handler
   end
 
   def self.handle_thumb_vote req
+    resp = {}
+    resp['type'] = 'thumb_vote'
+    if User.find(req['user_id']).thumb_voted == true
+      resp['status'] = 'failed'
+      return resp
+    end
     issue = Issue.find(req['issue_id'])
     if req['vote_type'] == 'up'
       issue.increment!(:thumb_up)
     else req['vote_type'] == 'down'
       issue.increment!(:thumb_down)
     end
-    resp = {}
+    User.find(req['user_id']).update(thumb_voted: true)
     resp['thumb_up'] = issue.thumb_up
     resp['thumb_down'] = issue.thumb_down
-    resp['type'] = 'thumb_vote'
+    resp['status'] = 'succeed'
     resp
   end
 
@@ -64,12 +70,16 @@ module Handler
     issue = Issue.find(req['issue_id'])
     issue.update(:thumb_up => 0)
     issue.update(:thumb_down => 0)
+    issue.session.users.each do |user|
+      user.update(thumb_voted: false)
+    end
     issue.extra_time
     resp = {}
     resp['thumb_up'] = issue.thumb_up
     resp['thumb_down'] = issue.thumb_down
     resp['type'] = 'reset_thumb_vote'
     resp['sec_elapsed'] = issue.get_sec_elapsed
+    resp['status'] = 'succeed'
     resp
   end
 

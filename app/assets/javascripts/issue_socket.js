@@ -51,17 +51,24 @@ function noteCallback(resp) {
 
 IssueSocket.prototype.thumbVoteCallback = function(resp) {
   var _this = this;
-  var all_users = $('.thumb-table-wrapper').data('user-count');
-  if (parseInt(resp.thumb_up) != 0 && parseInt(resp.thumb_up) >= parseInt(all_users) / 2) {
-    _this.resetThumbVote();
+  if (resp.status == "failed") {
+    flash('You already thumb voted!', 'error');
     return;
+  } else if (resp.status == "succeed") {
+    // debugger
+    flash('Thumb vote succeed!', 'notice');
+    var all_users = $('.thumb-table-wrapper').data('user-count');
+    if (parseInt(resp.thumb_up) != 0 && parseInt(resp.thumb_up) >= parseInt(all_users) / 2) {
+      _this.resetThumbVote();
+      return;
+    };
+    $('.up-count').text(resp.thumb_up);
+    $('.down-count').text(resp.thumb_down);
+    $('.up-percentage').text(computeThumbVotePercentage(resp.thumb_up));
+    $('.down-percentage').text(computeThumbVotePercentage(resp.thumb_down));
+    $('.up-growth').height(computeThumbVoteHeight(resp.thumb_up));
+    $('.down-growth').height(computeThumbVoteHeight(resp.thumb_down));
   };
-  $('.up-count').text(resp.thumb_up);
-  $('.down-count').text(resp.thumb_down);
-  $('.up-percentage').text(computeThumbVotePercentage(resp.thumb_up));
-  $('.down-percentage').text(computeThumbVotePercentage(resp.thumb_down));
-  $('.up-growth').height(computeThumbVoteHeight(resp.thumb_up));
-  $('.down-growth').height(computeThumbVoteHeight(resp.thumb_down));
 }
 
 function computeThumbVotePercentage(num) {
@@ -105,7 +112,8 @@ IssueSocket.prototype.bindVote = function() {
     var issue_id = $('.current-issue').data('issue-id');
     req = {
       'type': 'thumb_vote',
-      'issue_id': issue_id
+      'issue_id': issue_id,
+      'user_id': $('.thumb-table-wrapper').data('user-id')
     }
     if (e.which == 13) { // Enter
       req['vote_type'] = 'up';
