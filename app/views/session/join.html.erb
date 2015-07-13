@@ -5,7 +5,6 @@
       <li>You are joining session <%= @s.id %>. Please enter you name below to identify youself.</li>
       <li>If you have joined this session before, please enter the same name you used last time so that we can sync your posts.</li>
     </ul>
-     
   </div>
   <%= form_tag :join_session, class: "join-session-form" do %>
     <%= text_field_tag 'name', nil, placeholder: "Please enter your name:", class: "name-input inline" %>
