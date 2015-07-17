@@ -1,3 +1,3 @@
 # Retro Planner
 
-http://retro-planner.herokuapp.com/
+http://retro-plans.herokuapp.com/
