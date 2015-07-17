@@ -2,7 +2,7 @@
   <%= render 'admin_panel', session_id: session_id, review: false %>
 <% end %>
 <div class="report">
-  <div class="subtitle">Retro Report - <%= current_session.created_at.strftime("%m/%d/%Y") %></div>
+  <div class="subtitle">Retro Meeting Report - <%= current_session.created_at.strftime("%m/%d/%Y") %></div>
   <div class="issue-list-wrapper">
     <div class="issue-list">
       <% @issues.each do |issue| %>
