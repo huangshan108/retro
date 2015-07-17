@@ -26,10 +26,10 @@ IssueSocket.prototype.initBinds = function() {
         };
         _this.thumbVoteCallback(resp);
         break;
-      case 'reset_thumb_vote':
-        count_down.extraTime(resp.sec_elapsed);
-        // _this.thumbVoteCallback(resp);
-        break;
+      // case 'reset_thumb_vote':
+      //   count_down.extraTime(resp.sec_elapsed);
+      //   _this.thumbVoteCallback(resp);
+      //   break;
       case 'refresh':
         location.reload();
         break;

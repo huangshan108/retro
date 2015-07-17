@@ -46,6 +46,7 @@ module Handler
       end
       issue.extra_time
       resp['reset'] = 'true'
+      resp['sec_elapsed'] = issue.get_sec_elapsed
     end
 
     resp['thumb_up'] = issue.thumb_up
