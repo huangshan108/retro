@@ -17,6 +17,10 @@ CountDown.prototype.count_down = function(init) {
     $sec.text(_this.init);
     if (_this.init <= 10) {
       $sec.removeClass('green').addClass('red');
+      if (_this.init <= 2) {
+        $('#count-down-video').fadeIn(300);
+        document.getElementById("count-down-video").play();
+      };
     } else {
       $sec.removeClass('red').addClass('green');
     }
