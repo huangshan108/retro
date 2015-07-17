@@ -21,11 +21,14 @@ IssueSocket.prototype.initBinds = function() {
         noteCallback(resp);
         break;
       case 'thumb_vote':
+        if (resp.reset == "true") {
+          count_down.extraTime(resp.sec_elapsed);
+        };
         _this.thumbVoteCallback(resp);
         break;
       case 'reset_thumb_vote':
         count_down.extraTime(resp.sec_elapsed);
-        _this.thumbVoteCallback(resp);
+        // _this.thumbVoteCallback(resp);
         break;
       case 'refresh':
         location.reload();
@@ -52,16 +55,16 @@ function noteCallback(resp) {
 IssueSocket.prototype.thumbVoteCallback = function(resp) {
   var _this = this;
   if (resp.status == "failed") {
-    flash('You already thumb voted!', 'error');
+    // flash('You already thumb voted!', 'error');
     return;
   } else if (resp.status == "succeed") {
     // debugger
-    flash('Thumb vote succeed!', 'notice');
+    // flash('Thumb vote succeed!', 'notice');
     var all_users = $('.thumb-table-wrapper').data('user-count');
-    if (parseInt(resp.thumb_up) != 0 && parseInt(resp.thumb_up) >= parseInt(all_users) / 2) {
-      _this.resetThumbVote();
-      return;
-    };
+    // if (parseInt(resp.thumb_up) != 0 && parseInt(resp.thumb_up) >= parseInt(all_users) / 2) {
+    //   _this.resetThumbVote();
+    //   return;
+    // };
     $('.up-count').text(resp.thumb_up);
     $('.down-count').text(resp.thumb_down);
     $('.up-percentage').text(computeThumbVotePercentage(resp.thumb_up));
@@ -214,12 +217,12 @@ IssueSocket.prototype.sendNext = function(req) {
   this.send(req);
 };
 
-IssueSocket.prototype.resetThumbVote = function() {
-  var issue_id = $('.current-issue').data('issue-id');
-  var req = {
-    'type': 'reset_thumb_vote',
-    'issue_id': issue_id
-  }
-  console.log('req', req);
-  this.send(req);
-};
+// IssueSocket.prototype.resetThumbVote = function() {
+//   var issue_id = $('.current-issue').data('issue-id');
+//   var req = {
+//     'type': 'reset_thumb_vote',
+//     'issue_id': issue_id
+//   }
+//   console.log('req', req);
+//   this.send(req);
+// };

@@ -36,6 +36,17 @@ module Handler
       issue.increment!(:thumb_down)
     end
     User.find(req['user_id']).update(thumb_voted: true)
+
+    if issue.thumb_up != 0 and issue.thumb_up >= issue.session.users.count / 2
+      issue.update(:thumb_up => 0)
+      issue.update(:thumb_down => 0)
+      issue.session.users.each do |user|
+        user.update(thumb_voted: false)
+      end
+      issue.extra_time
+      resp['reset'] = 'true'
+    end
+
     resp['thumb_up'] = issue.thumb_up
     resp['thumb_down'] = issue.thumb_down
     resp['status'] = 'succeed'
@@ -66,22 +77,22 @@ module Handler
     resp
   end
 
-  def self.reset_thumb_vote req
-    issue = Issue.find(req['issue_id'])
-    issue.update(:thumb_up => 0)
-    issue.update(:thumb_down => 0)
-    issue.session.users.each do |user|
-      user.update(thumb_voted: false)
-    end
-    issue.extra_time
-    resp = {}
-    resp['thumb_up'] = issue.thumb_up
-    resp['thumb_down'] = issue.thumb_down
-    resp['type'] = 'reset_thumb_vote'
-    resp['sec_elapsed'] = issue.get_sec_elapsed
-    resp['status'] = 'succeed'
-    resp
-  end
+  # def self.reset_thumb_vote req
+  #   issue = Issue.find(req['issue_id'])
+  #   issue.update(:thumb_up => 0)
+  #   issue.update(:thumb_down => 0)
+  #   issue.session.users.each do |user|
+  #     user.update(thumb_voted: false)
+  #   end
+  #   issue.extra_time
+  #   resp = {}
+  #   resp['thumb_up'] = issue.thumb_up
+  #   resp['thumb_down'] = issue.thumb_down
+  #   resp['type'] = 'reset_thumb_vote'
+  #   resp['sec_elapsed'] = issue.get_sec_elapsed
+  #   resp['status'] = 'succeed'
+  #   resp
+  # end
 
   def self.change_stage req
     Session.find(req['session_id']).change_stage(req['stage'])

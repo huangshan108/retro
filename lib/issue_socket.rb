@@ -51,8 +51,8 @@ def spawn_socket
       resp = Handler.show_prev_issue req
     when 'next_issue'
       resp = Handler.show_next_issue req
-    when 'reset_thumb_vote'
-      resp = Handler.reset_thumb_vote req
+    # when 'reset_thumb_vote'
+    #   resp = Handler.reset_thumb_vote req
     when 'change_stage'
     resp = Handler.change_stage req
     end
