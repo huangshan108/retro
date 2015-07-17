@@ -10,10 +10,11 @@
     <input id="new-note" type="text" name="note" data-issue-id="<%= current_issue.id %>" class="inline" placeholder="Add notes here...">
     <input id="submit-new-note" type="submit" value="Submit" class="inline">
   </form>
-<div class="note-list">
-  <% current_issue.notes.each do |note| %>
-    <div class="note-box">
-      <span><%= note.detail %></span>
-    </div>
-  <% end %>
+  <div class="note-list">
+    <% current_issue.notes.each do |note| %>
+      <div class="note-box">
+        <span><%= note.detail %></span>
+      </div>
+    <% end %>
+  </div>
 </div>
