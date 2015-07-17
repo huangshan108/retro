@@ -5,6 +5,10 @@
   font-style: normal;
 }
 
+body {
+  height: 100%;
+}
+
 body, input {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
@@ -18,7 +22,7 @@ body {
 }
 
 .app-container {
-  margin-bottom: 100px;
+  padding-bottom: 100px;
 }
 
 ul {
@@ -129,7 +133,7 @@ input[type="submit"] {
 }
 
 .welcome-wrapper {
-  margin-top: 120px;
+  padding-top: 120px;
   text-align: center;
   .title {
     color: white;
@@ -155,3 +159,17 @@ input[type="submit"] {
   }
 }
 
+footer {
+  padding: 15px;
+  background-color: rgba(0,0,0,0.2);
+  color: #BDC3C7;
+  text-align: center;
+  font-size: smaller;
+  a {
+    color: #3498DB;
+  }
+  .bar {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
