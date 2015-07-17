@@ -36,7 +36,8 @@ class SessionController < ApplicationController
         render 'vote'
         return
       when "review"
-        @issues = @issues.order(vote: :desc)
+        @issues = @issues.order("vote DESC, created_at DESC")
+        # @issues = @issues.sort_by { |issue| [ issue.vote, issue.created_at] }
         if @issues.where(:is_current => true).empty?
           @issues.first.update(:is_current => true)
         end
