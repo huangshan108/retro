@@ -18,6 +18,6 @@ function resizeWindow() {
   var $app_container = $('.app-container');
   var $window = $(window);
   if ($app_container.height() < $window.height()) {
-    $app_container.height($window.height() - 150);
+    $app_container.height($window.height() - 48);
   };
 };
