@@ -6,6 +6,7 @@ var CountDown = function(init) {
 
 CountDown.prototype.count_down = function(init) {
   var _this = this;
+  var audio = new Audio('https://dl.dropbox.com/s/1exud5dd2y33gmw/shutup.mp4?dl=0');
   var $sec = $('#sec-left');
   if (_this.init <= 0) {
     $sec.text(0);
@@ -17,10 +18,15 @@ CountDown.prototype.count_down = function(init) {
     $sec.text(_this.init);
     if (_this.init <= 10) {
       $sec.removeClass('green').addClass('red');
-      if (_this.init <= 2) {
-        $('#count-down-video').fadeIn(300);
+      if (_this.init == 2) {
+        $video = $('#count-down-video');
+        $video.prop('loop', false);
+        $video.fadeIn(200);
         document.getElementById("count-down-video").play();
       };
+      // if (_this.init == 0) {
+      //   audio.play();
+      // };
     } else {
       $sec.removeClass('red').addClass('green');
     }
