@@ -86,7 +86,7 @@
       dataType: 'JSON',
       data: { 'cur_issue_id': <%= @current_issue.id %> },
       success: function(response) {
-        var sec_left = 60 - parseInt(response.data);
+        var sec_left = parseInt(<%= ENV['ISSUE_TIME'] || 90 %>) - parseInt(response.data);
         if (sec_left < 10) {
           $('#sec-left').removeClass('green').addClass('red');
         };
