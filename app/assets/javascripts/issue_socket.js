@@ -54,12 +54,15 @@ function noteCallback(resp) {
 
 IssueSocket.prototype.thumbVoteCallback = function(resp) {
   var _this = this;
-  if (resp.status == "failed") {
-    // flash('You already thumb voted!', 'error');
+  var user_id = $('.thumb-table-wrapper').data('user-id');
+  if (resp.user_id == user_id && resp.status == "failed") {
+    flash('You already thumb voted!', 'error');
     return;
   } else if (resp.status == "succeed") {
     // debugger
-    // flash('Thumb vote succeed!', 'notice');
+    if (resp.user_id == user_id) {
+      flash('Thumb vote succeed!', 'notice');
+    }
     var all_users = $('.thumb-table-wrapper').data('user-count');
     // if (parseInt(resp.thumb_up) != 0 && parseInt(resp.thumb_up) >= parseInt(all_users) / 2) {
     //   _this.resetThumbVote();

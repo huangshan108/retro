@@ -27,6 +27,7 @@ module Handler
     resp['type'] = 'thumb_vote'
     if User.find(req['user_id']).thumb_voted == true
       resp['status'] = 'failed'
+      resp['user_id'] = req['user_id']
       return resp
     end
     issue = Issue.find(req['issue_id'])
@@ -37,7 +38,7 @@ module Handler
     end
     User.find(req['user_id']).update(thumb_voted: true)
 
-    if issue.thumb_up != 0 and issue.thumb_up >= issue.session.users.count / 2
+    if issue.thumb_up != 0 and issue.thumb_up >= issue.session.users.count / 2.0
       issue.update(:thumb_up => 0)
       issue.update(:thumb_down => 0)
       issue.session.users.each do |user|
