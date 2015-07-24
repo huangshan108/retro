@@ -63,6 +63,7 @@ module Handler
       @prev_issue.init_count_down
       Issue.find_by_id(req['cur_issue_id']).update(:is_current => false)
     end
+    Issue.find_by_id(req['cur_issue_id']).session.users.each { |u| u.update(:thumb_voted => false) }
     resp['type'] = 'refresh'
     resp
   end
@@ -75,6 +76,7 @@ module Handler
       @next_issue.init_count_down
       Issue.find_by_id(req['cur_issue_id']).update(:is_current => false)
     end
+    Issue.find_by_id(req['cur_issue_id']).session.users.each { |u| u.update(:thumb_voted => false) }
     resp['type'] = 'refresh'
     resp
   end
